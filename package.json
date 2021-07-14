@@ -1,0 +1,44 @@
+{
+  "name": "rss-reader",
+  "private": true,
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "parcel src/index.html --https --host localhost.localdomain",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "types": "tsc --noEmit",
+    "build": "parcel build src/index.html",
+    "build:bundlesize": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
+  },
+  "devDependencies": {
+    "@parcel/reporter-bundle-analyzer": "^2.0.0-nightly.1694",
+    "@parcel/validator-typescript": "^2.0.0-alpha.3",
+    "@tophat/eslint-config": "^0.10.3",
+    "@tophat/eslint-import-resolver-require": "^0.1.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^27.0.6",
+    "parcel": "^2.0.0-beta.2",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.12.1",
+    "axios": "^0.21.1",
+    "crypto-js": "^4.0.0",
+    "htmlparser2": "^6.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
