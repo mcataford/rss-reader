@@ -11,6 +11,7 @@ interface CardProps {
 const useStyles = makeStyles({
     root: {
         margin: '5px',
+        padding: '10px',
         display: 'flex',
         flexDirection: 'column',
     },
