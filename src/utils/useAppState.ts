@@ -1,5 +1,6 @@
+import { useReducer, useRef } from 'react'
+
 import { panelIdentifiers } from '../constants'
-import type { State } from '../types'
 
 export const SET_PANEL_IDENTIFIER = 'setPanelIdentifier'
 export const SET_FEED_URLS = 'setFeedUrls'
@@ -12,7 +13,7 @@ export const defaultState = {
     feedUrls: [],
 }
 
-export default function reducer(state, action): State {
+function reducer(state, action) {
     switch (action.type) {
         case SET_PANEL_IDENTIFIER:
             return { ...state, activePanel: action.payload.panelIdentifier }
@@ -25,23 +26,37 @@ export default function reducer(state, action): State {
     }
 }
 
-export function setActivePanel(panelIdentifier: string) {
+function setActivePanel(panelIdentifier: string) {
     return {
         type: SET_PANEL_IDENTIFIER,
         payload: { panelIdentifier },
     }
 }
 
-export function setFeedUrls(feedUrls: string[]) {
+function setFeedUrls(feedUrls: string[]) {
     return {
         type: SET_FEED_URLS,
         payload: { feedUrls },
     }
 }
 
-export function setRssItems(rssItems) {
+function setRssItems(rssItems) {
     return {
         type: SET_RSS_ITEMS,
         payload: { rssItems },
     }
+}
+export default function useAppState() {
+    const [state, dispatch] = useReducer(reducer, defaultState)
+
+    const actions = {
+        setActivePanel: (panelIdentifier) =>
+            dispatch(setActivePanel(panelIdentifier)),
+        setFeedUrls: (feedUrls) => dispatch(setFeedUrls(feedUrls)),
+        setRssItems: (rssItems) => dispatch(setRssItems(rssItems)),
+    }
+
+    const stableActions = useRef(actions)
+
+    return [state, stableActions.current]
 }

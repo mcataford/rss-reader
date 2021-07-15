@@ -6,7 +6,7 @@ import FeedsPanel from './FeedsPanel'
 import SettingsPanel from './SettingsPanel'
 import { panelIdentifiers } from './constants'
 import { restoreSettings } from './utils/persistence'
-import useAppState from './state/useAppState'
+import useAppState from './utils/useAppState'
 
 export default function App(): ReactNode {
     const [state, actions] = useAppState()
