@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useReducer } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 
 import fetchFeeds from './utils/fetchFeeds'
 import NavigationBar from './NavigationBar'
@@ -6,37 +6,32 @@ import FeedsPanel from './FeedsPanel'
 import SettingsPanel from './SettingsPanel'
 import { panelIdentifiers } from './constants'
 import { restoreSettings } from './utils/persistence'
-import reducer, {
-    setActivePanel,
-    setFeedUrls,
-    setRssItems,
-} from './state/reducer'
+import useAppState from './state/useAppState'
 
 export default function App(): ReactNode {
-    const [state, dispatch] = useReducer(reducer, {
-        activePanel: panelIdentifiers.FEEDS,
-        rssItems: [],
-        feedUrls: [],
-    })
+    const [state, actions] = useAppState()
+    const { setActivePanel, setRssItems, setFeedUrls } = actions
 
     useEffect(() => {
-        dispatch(setFeedUrls(restoreSettings().feedUrls))
-    }, [])
+        if (state.loaded) return
+
+        setFeedUrls(restoreSettings().feedUrls)
+    }, [state.loaded, setFeedUrls])
 
     useEffect(() => {
         const fetch = async () => {
             const feedItems = await fetchFeeds(state.feedUrls)
-            dispatch(setRssItems(feedItems))
+            setRssItems(feedItems)
         }
 
         fetch()
-    }, [state.feedUrls])
+    }, [state.feedUrls, setRssItems])
 
     return (
         <>
             <NavigationBar
                 activePanel={state.activePanel}
-                setActivePanel={(panel) => dispatch(setActivePanel(panel))}
+                setActivePanel={setActivePanel}
             />
             {state.activePanel === panelIdentifiers.FEEDS ? (
                 <FeedsPanel items={state.rssItems} />
@@ -44,7 +39,7 @@ export default function App(): ReactNode {
             {state.activePanel === panelIdentifiers.SETTINGS ? (
                 <SettingsPanel
                     feedUrls={state.feedUrls}
-                    setFeedUrls={(urls) => dispatch(setFeedUrls(urls))}
+                    setFeedUrls={setFeedUrls}
                 />
             ) : null}
         </>

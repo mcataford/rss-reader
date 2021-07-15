@@ -7,6 +7,7 @@
 !.yarn/versions
 .pnp.*
 
+.parcel-cache
 parcel-bundle-reports
 dist
 
