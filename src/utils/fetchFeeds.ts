@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { parseFeed } from 'htmlparser2'
-import md5 from 'crypto-js/md5'
 
 import type { Item } from '../types'
 
-import { persistResults, restoreResults } from './persistence'
+import { restoreRssData, storeRssData } from './persistence'
 
 function processFeedXML(feed) {
     return feed.items.reduce((items, feedItem) => {
@@ -16,6 +15,12 @@ function processFeedXML(feed) {
 
         return items
     }, [])
+}
+
+function getRefetchThreshold() {
+    const refetchThreshold = new Date()
+    refetchThreshold.setMinutes(refetchThreshold.getMinutes() - 10)
+    return refetchThreshold
 }
 
 /*
@@ -32,17 +37,16 @@ export default async function fetchFeeds(
 ): Item[] {
     const feed = await Promise.all(
         feedUrls.map(async (url: string) => {
-            const urlHash = md5(url)
-            const storedFeedData = restoreResults(urlHash)
+            const storedFeedData = restoreRssData(url)
 
-            const { items, lastPush } = storedFeedData || { items: [] }
+            const items = storedFeedData?.items || []
+            const lastPush = storedFeedData?.lastPush
 
-            // TODO: Constantize
-            if (!forceRefetch && lastPush > Date.now() - 10 * 60 * 1000)
-                return items
+            if (!forceRefetch && lastPush > getRefetchThreshold()) return items
 
-            const response = await axios.get(url)
-
+            const response = await axios.get('/.netlify/functions/rss-proxy', {
+                params: { url },
+            })
             const availableFeedItems = [...items]
 
             try {
@@ -58,9 +62,9 @@ export default async function fetchFeeds(
                 })
             } catch (e) {
                 // eslint-disable-next-line no-console
-                console.error(e)
+                console.error(e.response)
             }
-            persistResults(urlHash, availableFeedItems)
+            storeRssData(url, availableFeedItems)
 
             return availableFeedItems
         }),

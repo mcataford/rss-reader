@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel src/index.html --https --host localhost.localdomain",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
+    "lint:fix": "eslint src netlify --fix",
     "types": "tsc --noEmit",
     "build": "parcel build src/index.html",
     "build:bundlesize": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
