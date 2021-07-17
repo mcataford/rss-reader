@@ -76,7 +76,13 @@ jobs:
       - name: Netlify CLI setup
         run: npm install -g netlify-cli
       - name: Deploy
+        id: preview-deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: netlify deploy --dir=dist
+        run: |
+          netlify deploy --dir=dist > output.log
+          echo "::set-output name=stdout::$(cat output.log)"
+      - name: Report
+        run: |
+          echo ${{ steps.preview-deploy.outputs.stdout }}
