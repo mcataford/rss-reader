@@ -94,5 +94,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Branch deployed at {process.env.DRAFT_URL}`
+              body: `:eyes: Branch deployed at ${process.env.DRAFT_URL}`
             })
