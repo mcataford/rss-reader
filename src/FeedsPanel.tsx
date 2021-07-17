@@ -27,7 +27,7 @@ function ItemCard(props: CardProps): ReactNode {
     const { title, url, published } = props
     const classes = useStyles()
 
-    const formattedDate = published.toLocaleString('en-GB', { timeZone: 'UTC' })
+    const formattedDate = (new Date(published)).toLocaleString('en-GB', { timeZone: 'UTC' })
     return (
         <Card className={classes.root}>
             <a href={url}>{title}</a>
