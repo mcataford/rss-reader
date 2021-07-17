@@ -8,6 +8,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint src netlify --fix",
     "types": "tsc --noEmit",
+    "clean": "rm -rf dist/*",
     "build": "parcel build src/index.html",
     "build:bundlesize": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
   },
@@ -37,8 +38,8 @@
     "@material-ui/core": "^4.12.1",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
-    "crypto-js": "^4.0.0",
     "htmlparser2": "^6.1.0",
+    "md5": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

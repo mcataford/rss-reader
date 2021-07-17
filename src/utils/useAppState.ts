@@ -1,5 +1,6 @@
 import { useReducer, useRef } from 'react'
 
+import type { State } from '../types'
 import { panelIdentifiers } from '../constants'
 
 export const SET_PANEL_IDENTIFIER = 'setPanelIdentifier'
@@ -46,7 +47,17 @@ function setRssItems(rssItems) {
         payload: { rssItems },
     }
 }
-export default function useAppState() {
+
+type Action =
+    | ReturnType<setRssItems>
+    | ReturnType<setFeedUrls>
+    | ReturnType<setACtivePanel>
+
+interface ActionSet {
+    [key: string]: Action
+}
+
+export default function useAppState(): [State, ActionSet] {
     const [state, dispatch] = useReducer(reducer, defaultState)
 
     const actions = {
