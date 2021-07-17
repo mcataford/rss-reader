@@ -1,18 +1,40 @@
-export function persistSettings(settings) {
-    window.localStorage.setItem('settings', JSON.stringify(settings))
-}
+import md5 from 'crypto-js/md5'
+import type { RSSData, Settings } from '../types'
 
-export function restoreSettings() {
-    return JSON.parse(window.localStorage.getItem('settings') ?? {})
-}
+const SETTINGS_KEY = 'settings'
+const RSS_DATA_KEY_PREFIX = 'savedItems_'
 
-export function persistResults(h: string, items: Item[]) {
+function storeToLocal(key: string, data): void {
     window.localStorage.setItem(
-        `savedItems_${h}`,
-        JSON.stringify({ items, lastPush: Date.now() }),
+        key,
+        JSON.stringify(data),
     )
 }
 
-export function restoreResults(key): Item[] {
-    return JSON.parse(window.localStorage.getItem(`savedItems_${key}`))
+function restoreFromLocal(key: string) {
+    const restored = window.localStorage.getItem(key)
+    try {
+        return JSON.parse(restored)
+    } catch (e) {
+        return null
+    }
 }
+export function storeSettings(settings: Settings): void {
+    return restoreFromLocal(SETTINGS_KEY)
+}
+
+export function restoreSettings(): Settings {
+    return restoreFromLocal(SETTINGS_KEY)
+}
+
+export function storeRssData(url: string, items: Item[]): void {
+    const key = RSS_DATA_KEY_PREFIX + md5(url)
+    storeToLocal(key, items)
+}
+
+export function restoreRssData(url: string): Item[] {
+    const key = RSS_DATA_KEY_PREFIX + md5(url)
+    return restoreFromLocal(key)
+}
+
+

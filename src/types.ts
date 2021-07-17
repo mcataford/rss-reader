@@ -10,3 +10,12 @@ export interface State {
     feedUrls: string[]
     activePanel: string
 }
+
+export interface RSSData {
+    items: Item[]
+    lastPushed: Date
+}
+
+export interface Settings {
+    feedUrls: string[]
+}

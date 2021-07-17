@@ -4,7 +4,7 @@ import md5 from 'crypto-js/md5'
 
 import type { Item } from '../types'
 
-import { persistResults, restoreResults } from './persistence'
+import { storeRssData, restoreRssData } from './persistence'
 
 function processFeedXML(feed) {
     return feed.items.reduce((items, feedItem) => {
@@ -33,9 +33,10 @@ export default async function fetchFeeds(
     const feed = await Promise.all(
         feedUrls.map(async (url: string) => {
             const urlHash = md5(url)
-            const storedFeedData = restoreResults(urlHash)
+            const storedFeedData = restoreRssData(url)
 
-            const { items, lastPush } = storedFeedData || { items: [] }
+            const items = storedFeedData?.items || []
+            const lastPush = storedFeedData?.lastPush
 
             // TODO: Constantize
             if (!forceRefetch && lastPush > Date.now() - 10 * 60 * 1000)
@@ -60,7 +61,7 @@ export default async function fetchFeeds(
                 // eslint-disable-next-line no-console
                 console.error(e)
             }
-            persistResults(urlHash, availableFeedItems)
+            storeRssData(url, availableFeedItems)
 
             return availableFeedItems
         }),

@@ -15,7 +15,7 @@ export default function App(): ReactNode {
     useEffect(() => {
         if (state.loaded) return
 
-        setFeedUrls(restoreSettings().feedUrls)
+        setFeedUrls(restoreSettings()?.feedUrls ?? [])
     }, [state.loaded, setFeedUrls])
 
     useEffect(() => {
