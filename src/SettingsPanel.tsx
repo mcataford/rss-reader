@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 
-import { persistSettings } from './utils/persistence'
+import { storeSettings } from './utils/persistence'
 
 interface Props {
     feedUrls: string[]
@@ -73,7 +73,7 @@ export default function SettingsPanel(props: Props): ReactNode {
                     const validUrls = feedUrlsForm.filter(isValidUrl)
                     setFeedUrls(validUrls)
                     setFeedUrlsForm(validUrls)
-                    persistSettings({ feedUrls: validUrls })
+                    storeSettings({ feedUrls: validUrls })
                 }}
             >
                 Save

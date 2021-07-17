@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { parseFeed } from 'htmlparser2'
-import md5 from 'crypto-js/md5'
 
 import type { Item } from '../types'
 
-import { storeRssData, restoreRssData } from './persistence'
+import { restoreRssData, storeRssData } from './persistence'
 
 function processFeedXML(feed) {
     return feed.items.reduce((items, feedItem) => {
@@ -32,7 +31,6 @@ export default async function fetchFeeds(
 ): Item[] {
     const feed = await Promise.all(
         feedUrls.map(async (url: string) => {
-            const urlHash = md5(url)
             const storedFeedData = restoreRssData(url)
 
             const items = storedFeedData?.items || []
@@ -42,8 +40,9 @@ export default async function fetchFeeds(
             if (!forceRefetch && lastPush > Date.now() - 10 * 60 * 1000)
                 return items
 
-            const response = await axios.get(url)
-
+            const response = await axios.get('/.netlify/functions/rss-proxy', {
+                params: { url },
+            })
             const availableFeedItems = [...items]
 
             try {
@@ -59,7 +58,7 @@ export default async function fetchFeeds(
                 })
             } catch (e) {
                 // eslint-disable-next-line no-console
-                console.error(e)
+                console.error(e.response)
             }
             storeRssData(url, availableFeedItems)
 

@@ -1,14 +1,12 @@
 import md5 from 'crypto-js/md5'
+
 import type { RSSData, Settings } from '../types'
 
 const SETTINGS_KEY = 'settings'
 const RSS_DATA_KEY_PREFIX = 'savedItems_'
 
 function storeToLocal(key: string, data): void {
-    window.localStorage.setItem(
-        key,
-        JSON.stringify(data),
-    )
+    window.localStorage.setItem(key, JSON.stringify(data))
 }
 
 function restoreFromLocal(key: string) {
@@ -20,7 +18,7 @@ function restoreFromLocal(key: string) {
     }
 }
 export function storeSettings(settings: Settings): void {
-    return restoreFromLocal(SETTINGS_KEY)
+    return storeToLocal(SETTINGS_KEY, settings)
 }
 
 export function restoreSettings(): Settings {
@@ -32,9 +30,7 @@ export function storeRssData(url: string, items: Item[]): void {
     storeToLocal(key, items)
 }
 
-export function restoreRssData(url: string): Item[] {
+export function restoreRssData(url: string): RSSData {
     const key = RSS_DATA_KEY_PREFIX + md5(url)
     return restoreFromLocal(key)
 }
-
-
