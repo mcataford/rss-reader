@@ -39,12 +39,12 @@ export default function FeedsPanel(props: Props): ReactNode {
     const { items } = props
     return (
         <Box display="flex" flexDirection="column">
-            {items.map(
+            {items.map((item) => (
                 <ItemCard
                     {...item}
                     key={`feed_item_${item.title.replace(' ', '_')}`}
-                />,
-            )}
+                />
+            ))}
         </Box>
     )
 }
