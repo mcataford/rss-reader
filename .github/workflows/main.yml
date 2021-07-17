@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      master
+      main
   pull_request:
 
 env:
@@ -61,7 +61,7 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     name: Deploy preview
-    if: ${{ github.ref != 'refs/head/master' }}
+    if: ${{ github.ref != 'refs/head/main' }}
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy
     needs: build
-    if: ${{ github.ref == 'refs/head/master' }}
+    if: ${{ github.ref == 'refs/head/main' }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
