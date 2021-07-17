@@ -42,5 +42,7 @@ jobs:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - run: yarn build
+      - run: |
+        yarn
+        yarn build
 
