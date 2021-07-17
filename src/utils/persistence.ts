@@ -1,4 +1,4 @@
-import md5 from 'crypto-js/md5'
+import md5 from 'md5'
 
 import type { RSSData, Settings } from '../types'
 
