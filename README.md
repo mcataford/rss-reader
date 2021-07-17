@@ -2,4 +2,4 @@
 
 ## Overview
 
-![Overview](./assets/overview.png)
+<img src="./assets/overview.png"/>
