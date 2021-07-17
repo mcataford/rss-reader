@@ -61,6 +61,7 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     name: Deploy preview
+    if: ${{ github.ref != 'refs/head/master' }}
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -96,3 +97,28 @@ jobs:
               repo: context.repo.repo,
               body: `:eyes: Branch deployed at ${process.env.DRAFT_URL}`
             })
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    needs: build
+    if: ${{ github.ref == 'refs/head/master' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        id: node-setup
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+          path: dist
+      - name: Netlify CLI setup
+        run: npm install -g netlify-cli
+      - name: Deploy
+        id: preview-deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          netlify deploy --dir=dist --prod
