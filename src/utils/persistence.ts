@@ -27,7 +27,7 @@ export function restoreSettings(): Settings {
 
 export function storeRssData(url: string, items: Item[]): void {
     const key = RSS_DATA_KEY_PREFIX + md5(url)
-    storeToLocal(key, items)
+    storeToLocal(key, { items, lastPush: Date.now() })
 }
 
 export function restoreRssData(url: string): RSSData {

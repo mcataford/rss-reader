@@ -17,6 +17,12 @@ function processFeedXML(feed) {
     }, [])
 }
 
+function getRefetchThreshold() {
+    const refetchThreshold = new Date()
+    refetchThreshold.setMinutes(refetchThreshold.getMinutes() - 10)
+    return refetchThreshold
+}
+
 /*
  * Fetches RSS feeds from the given url list. If feed data exists in
  * localStorage, it is used as a basis for the final list and any new
@@ -36,9 +42,7 @@ export default async function fetchFeeds(
             const items = storedFeedData?.items || []
             const lastPush = storedFeedData?.lastPush
 
-            // TODO: Constantize
-            if (!forceRefetch && lastPush > Date.now() - 10 * 60 * 1000)
-                return items
+            if (!forceRefetch && lastPush > getRefetchThreshold()) return items
 
             const response = await axios.get('/.netlify/functions/rss-proxy', {
                 params: { url },
