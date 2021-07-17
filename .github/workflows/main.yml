@@ -86,7 +86,7 @@ jobs:
       - name: Report
         uses: actions/github-script@v2
         env:
-          DRAFT_URL: steps.preview-deploy.outputs.draft-url
+          DRAFT_URL: ${{ steps.preview-deploy.outputs.draft-url }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
