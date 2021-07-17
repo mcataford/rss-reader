@@ -82,9 +82,11 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           netlify deploy --dir=dist --json > output.log
-          export NETLIFY_STDOUT=$(cat output.log)
+          echo "::set-output name=draft-url::$(grep 'Website Draft URL' output.log)"
       - name: Report
         uses: actions/github-script@v2
+        env:
+          DRAFT_URL: steps.preview-deploy.outputs.draft-url
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -92,5 +94,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: process.env.NETLIFY_STDOUT
+              body: `Branch deployed at {process.env.DRAFT_URL}`
             })
