@@ -86,11 +86,11 @@ jobs:
       - name: Report
         uses: actions/github-script@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}i
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: ${{ env.NETLIFY_STDOUT }}
+              body: process.env.NETLIFY_STDOUT
             })
