@@ -10,7 +10,7 @@ import useAppState from './utils/useAppState'
 
 export default function App(): ReactNode {
     const [state, actions] = useAppState()
-    const { setActivePanel, setRssItems, setFeedUrls } = actions
+    const { setActivePanel, setFeeds, setFeedUrls } = actions
 
     useEffect(() => {
         if (state.loaded) return
@@ -20,12 +20,12 @@ export default function App(): ReactNode {
 
     useEffect(() => {
         const fetch = async () => {
-            const feedItems = await fetchFeeds(state.feedUrls)
-            setRssItems(feedItems)
+            const feeds = await fetchFeeds(state.feedUrls)
+            setFeeds(feeds)
         }
 
         fetch()
-    }, [state.feedUrls, setRssItems])
+    }, [state.feedUrls, setFeeds])
 
     return (
         <>
@@ -34,7 +34,7 @@ export default function App(): ReactNode {
                 setActivePanel={setActivePanel}
             />
             {state.activePanel === panelIdentifiers.FEEDS ? (
-                <FeedsPanel items={state.rssItems} />
+                <FeedsPanel items={state.feeds} />
             ) : null}
             {state.activePanel === panelIdentifiers.SETTINGS ? (
                 <SettingsPanel
