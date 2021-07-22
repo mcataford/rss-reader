@@ -62,13 +62,12 @@ export default async function fetchFeeds(
 
             // Skip refetch if not stale / not forced
             const lastPull = storedFeedData?.lastPull
-            if (!forceRefetch && lastPull > getRefetchThreshold()) return items
+            if (!forceRefetch && lastPull > getRefetchThreshold())
+                return storedFeedData
 
             const response = await axios.get('/.netlify/functions/rss-proxy', {
                 params: { url },
             })
-
-            const items = storedFeedData?.items ?? []
 
             try {
                 const newFeedData = parseFeed(response.data)
