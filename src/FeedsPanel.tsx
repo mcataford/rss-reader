@@ -12,6 +12,7 @@ interface CardProps {
     title: string
     url: string
     published: Date
+    feedTitle: string
 }
 
 const useStyles = makeStyles({
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 })
 
 function ItemCard(props: CardProps): ReactNode {
-    const { title, url, published } = props
+    const { title, url, published, feedTitle } = props
     const classes = useStyles()
 
     const formattedDate = new Date(published).toLocaleString('en-GB', {
@@ -33,7 +34,7 @@ function ItemCard(props: CardProps): ReactNode {
     return (
         <Card className={classes.root}>
             <a href={url}>{title}</a>
-            <span>{formattedDate}</span>
+            <span>{`${feedTitle} - ${formattedDate}`}</span>
         </Card>
     )
 }
