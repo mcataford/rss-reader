@@ -5,12 +5,12 @@ import { panelIdentifiers } from '../constants'
 
 export const SET_PANEL_IDENTIFIER = 'setPanelIdentifier'
 export const SET_FEED_URLS = 'setFeedUrls'
-export const SET_RSS_ITEMS = 'setRssItems'
+export const SET_FEEDS = 'setFeeds'
 
 export const defaultState = {
     loaded: false,
     activePanel: panelIdentifiers.FEEDS,
-    rssItems: [],
+    feeds: [],
     feedUrls: [],
 }
 
@@ -20,8 +20,8 @@ function reducer(state, action) {
             return { ...state, activePanel: action.payload.panelIdentifier }
         case SET_FEED_URLS:
             return { ...state, loaded: true, feedUrls: action.payload.feedUrls }
-        case SET_RSS_ITEMS:
-            return { ...state, rssItems: action.payload.rssItems }
+        case SET_FEEDS:
+            return { ...state, feeds: action.payload.feeds }
         default:
             return state
     }
@@ -41,17 +41,17 @@ function setFeedUrls(feedUrls: string[]) {
     }
 }
 
-function setRssItems(rssItems) {
+function setFeeds(feeds) {
     return {
-        type: SET_RSS_ITEMS,
-        payload: { rssItems },
+        type: SET_FEEDS,
+        payload: { feeds },
     }
 }
 
 type Action =
-    | ReturnType<setRssItems>
+    | ReturnType<setFeeds>
     | ReturnType<setFeedUrls>
-    | ReturnType<setACtivePanel>
+    | ReturnType<setActivePanel>
 
 interface ActionSet {
     [key: string]: Action
@@ -64,7 +64,7 @@ export default function useAppState(): [State, ActionSet] {
         setActivePanel: (panelIdentifier) =>
             dispatch(setActivePanel(panelIdentifier)),
         setFeedUrls: (feedUrls) => dispatch(setFeedUrls(feedUrls)),
-        setRssItems: (rssItems) => dispatch(setRssItems(rssItems)),
+        setFeeds: (feeds) => dispatch(setFeeds(feeds)),
     }
 
     const stableActions = useRef(actions)

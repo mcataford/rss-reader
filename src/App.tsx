@@ -27,8 +27,7 @@ export default function App(): ReactNode {
         fetch()
     }, [state.feedUrls, setFeeds])
 
-    if (!state.feeds)
-        return 'loading'
+    if (!state.feeds) return 'loading'
 
     return (
         <>
