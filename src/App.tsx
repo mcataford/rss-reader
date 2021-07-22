@@ -34,7 +34,7 @@ export default function App(): ReactNode {
                 setActivePanel={setActivePanel}
             />
             {state.activePanel === panelIdentifiers.FEEDS ? (
-                <FeedsPanel items={state.feeds} />
+                <FeedsPanel feeds={state.feeds} />
             ) : null}
             {state.activePanel === panelIdentifiers.SETTINGS ? (
                 <SettingsPanel
