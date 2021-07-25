@@ -1,0 +1,9 @@
+[functions]
+    directory = "netlify/functions/"
+
+[dev]
+    command = "yarn start:parcel"
+    publish = "dist"
+    targetPort = 1234
+    port = 8080
+    framework = "parcel"
