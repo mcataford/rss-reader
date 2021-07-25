@@ -1,26 +1,47 @@
 import axios from 'axios'
 import { parseFeed } from 'htmlparser2'
 
-import type { Item } from '../types'
+import type { Feed } from '../types'
 
 import { restoreRssData, storeRssData } from './persistence'
 
 function processFeedXML(feed) {
-    return feed.items.reduce((items, feedItem) => {
-        items.push({
-            title: feedItem.title,
-            url: feedItem.link,
-            published: feedItem.pubDate,
-        })
+    return {
+        title: feed.title,
+        lastPull: Date.now(),
+        items: feed.items.reduce((items, feedItem) => {
+            items.push({
+                title: feedItem.title,
+                url: feedItem.link,
+                published: new Date(feedItem.pubDate),
+            })
 
-        return items
-    }, [])
+            return items
+        }, []),
+    }
 }
 
 function getRefetchThreshold() {
     const refetchThreshold = new Date()
     refetchThreshold.setMinutes(refetchThreshold.getMinutes() - 10)
     return refetchThreshold
+}
+
+function mergeFeeds(first, second) {
+    // Assuming `second` is newer.
+    const seen = new Set(items.map((item) => item.url))
+    const mergedItems = newFeedItems.reduce((updatedItems, item) => {
+        if (!seen.has(item.url)) {
+            updatedItems.push(item)
+            seen.add(item.url)
+        }
+
+        return updatedItems
+    }, [])
+    return {
+        ...second,
+        items: mergedItems,
+    }
 }
 
 /*
@@ -34,47 +55,37 @@ function getRefetchThreshold() {
 export default async function fetchFeeds(
     feedUrls: string[],
     forceRefetch = false,
-): Item[] {
-    const feed = await Promise.all(
+): Feed[] {
+    const feeds = await Promise.all(
         feedUrls.map(async (url: string) => {
             const storedFeedData = restoreRssData(url)
 
-            const items = storedFeedData?.items || []
-            const lastPush = storedFeedData?.lastPush
-
-            if (!forceRefetch && lastPush > getRefetchThreshold()) return items
+            // Skip refetch if not stale / not forced
+            const lastPull = storedFeedData?.lastPull
+            if (!forceRefetch && lastPull > getRefetchThreshold())
+                return storedFeedData
 
             const response = await axios.get('/.netlify/functions/rss-proxy', {
                 params: { url },
             })
-            const availableFeedItems = [...items]
 
             try {
                 const newFeedData = parseFeed(response.data)
-                const newFeedItems = processFeedXML(newFeedData)
-                const seen = new Set(availableFeedItems.map((item) => item.url))
+                const newFeed = processFeedXML(newFeedData)
+                const mergedFeeds = storedFeedData
+                    ? mergeFeeds(storedFeedData, newFeed)
+                    : newFeed
 
-                newFeedItems.forEach((item) => {
-                    if (seen.has(item.url)) return
-
-                    availableFeedItems.push(item)
-                    seen.add(item.url)
-                })
+                storeRssData(url, mergedFeeds)
+                return mergedFeeds
             } catch (e) {
                 // eslint-disable-next-line no-console
                 console.error(e.response)
             }
-            storeRssData(url, availableFeedItems)
 
-            return availableFeedItems
+            return storedFeedData
         }),
     )
 
-    // TODO: Flattening to be part of the above.
-    const flattenedFeed = feed.reduce((acc, items) => {
-        acc.push(...items)
-
-        return acc
-    }, [])
-    return flattenedFeed
+    return feeds
 }

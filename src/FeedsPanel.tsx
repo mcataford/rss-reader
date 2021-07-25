@@ -3,15 +3,17 @@ import Box from '@material-ui/core/Box'
 import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
-import type { Item } from './types'
+import sortFeedItemsByDate from './utils/sortFeedItemsByDate'
+import type { Feed } from './types'
 
 interface Props {
-    items: Item[]
+    feeds: Feed[]
 }
 interface CardProps {
     title: string
     url: string
     published: Date
+    feedTitle: string
 }
 
 const useStyles = makeStyles({
@@ -24,22 +26,28 @@ const useStyles = makeStyles({
 })
 
 function ItemCard(props: CardProps): ReactNode {
-    const { title, url, published } = props
+    const { title, url, published, feedTitle } = props
     const classes = useStyles()
 
-    const formattedDate = (new Date(published)).toLocaleString('en-GB', { timeZone: 'UTC' })
+    const formattedDate = new Date(published).toLocaleString('en-GB', {
+        timeZone: 'UTC',
+    })
     return (
         <Card className={classes.root}>
             <a href={url}>{title}</a>
-            <span>{formattedDate}</span>
+            <span>{`${feedTitle} - ${formattedDate}`}</span>
         </Card>
     )
 }
+
 export default function FeedsPanel(props: Props): ReactNode {
-    const { items } = props
+    const { feeds } = props
+
+    const flattenedItems = sortFeedItemsByDate(feeds)
+
     return (
         <Box display="flex" flexDirection="column">
-            {items.map((item) => (
+            {flattenedItems.map((item) => (
                 <ItemCard
                     {...item}
                     key={`feed_item_${item.title.replace(' ', '_')}`}
