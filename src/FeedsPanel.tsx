@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box'
 import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
+import sortFeedItemsByDate from './utils/sortFeedItemsByDate'
 import type { Feed } from './types'
 
 interface Props {
@@ -36,21 +37,6 @@ function ItemCard(props: CardProps): ReactNode {
             <a href={url}>{title}</a>
             <span>{`${feedTitle} - ${formattedDate}`}</span>
         </Card>
-    )
-}
-
-function sortFeedItemsByDate(feeds) {
-    const flattened = feeds.reduce((flattenedFeeds, feed) => {
-        const items = feed.items.map((item) => ({
-            ...item,
-            feedTitle: feed.title,
-        }))
-        flattenedFeeds.push(...items)
-        return flattenedFeeds
-    }, [])
-
-    return flattened.sort((first, second) =>
-        first.pubDate > second.pubDate ? 1 : -1,
     )
 }
 

@@ -13,7 +13,7 @@ function processFeedXML(feed) {
             items.push({
                 title: feedItem.title,
                 url: feedItem.link,
-                published: feedItem.pubDate,
+                published: new Date(feedItem.pubDate),
             })
 
             return items
