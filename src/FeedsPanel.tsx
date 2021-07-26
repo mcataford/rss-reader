@@ -48,9 +48,10 @@ function NoItemsNotice(): ReactNode {
             display="flex"
             flexDirection="column"
             alignItems="center"
+            mt="50px"
         >
             <Typography variant="h6">Nothing to see here!</Typography>
-            <Typography variant="p">
+            <Typography>
                 Add some feeds in the <strong>Settings</strong> panel to get
                 started!
             </Typography>
