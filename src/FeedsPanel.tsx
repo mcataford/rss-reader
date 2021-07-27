@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -40,19 +41,36 @@ function ItemCard(props: CardProps): ReactNode {
     )
 }
 
+function NoItemsNotice(): ReactNode {
+    return (
+        <Box
+            alignSelf="center"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="50px"
+        >
+            <Typography variant="h6">Nothing to see here!</Typography>
+            <Typography>
+                Add some feeds in the <strong>Settings</strong> panel to get
+                started!
+            </Typography>
+        </Box>
+    )
+}
+
 export default function FeedsPanel(props: Props): ReactNode {
     const { feeds } = props
 
     const flattenedItems = sortFeedItemsByDate(feeds)
 
+    const cardList = flattenedItems.map((item) => (
+        <ItemCard {...item} key={`feed_item_${item.title.replace(' ', '_')}`} />
+    ))
+
     return (
         <Box display="flex" flexDirection="column">
-            {flattenedItems.map((item) => (
-                <ItemCard
-                    {...item}
-                    key={`feed_item_${item.title.replace(' ', '_')}`}
-                />
-            ))}
+            {cardList.length > 0 ? cardList : <NoItemsNotice />}
         </Box>
     )
 }
