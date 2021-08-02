@@ -28,15 +28,18 @@ function getRefetchThreshold() {
 
 function mergeFeeds(first, second) {
     // Assuming `second` is newer.
-    const seen = new Set(items.map((item) => item.url))
-    const mergedItems = newFeedItems.reduce((updatedItems, item) => {
-        if (!seen.has(item.url)) {
-            updatedItems.push(item)
-            seen.add(item.url)
-        }
+    const seen = new Set(first.items.map((item) => item.url))
+    const mergedItems = second.items.reduce(
+        (updatedItems, item) => {
+            if (!seen.has(item.url)) {
+                updatedItems.push(item)
+                seen.add(item.url)
+            }
 
-        return updatedItems
-    }, [])
+            return updatedItems
+        },
+        [...first.items],
+    )
     return {
         ...second,
         items: mergedItems,
@@ -83,7 +86,7 @@ export default async function fetchFeeds(
                 return mergedFeeds
             } catch (e) {
                 // eslint-disable-next-line no-console
-                console.error(e.response)
+                console.error(e)
             }
 
             return storedFeedData
