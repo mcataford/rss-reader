@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { parseFeed } from 'htmlparser2'
 
 import type { Feed } from '../types'
@@ -65,12 +64,13 @@ export default async function fetchFeeds(
             if (!forceRefetch && lastPull > getRefetchThreshold())
                 return storedFeedData
 
-            const response = await axios.get('/.netlify/functions/rss-proxy', {
-                params: { url },
-            })
+            const response = await fetch(
+                `/.netlify/functions/rss-proxy?url=${url}`,
+            )
+            const responseData = await response.text()
 
             try {
-                const newFeedData = parseFeed(response.data)
+                const newFeedData = parseFeed(responseData)
                 const newFeed = processFeedXML(newFeedData)
                 const mergedFeeds = storedFeedData
                     ? mergeFeeds(storedFeedData, newFeed)
