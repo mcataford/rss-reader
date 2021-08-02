@@ -1,9 +1,11 @@
-import md5 from 'md5'
-
 import type { RSSData, Settings } from '../types'
 
 const SETTINGS_KEY = 'settings'
 const RSS_DATA_KEY_PREFIX = 'savedItems_'
+
+function cacheKeyFromURL(url: string): string {
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+}
 
 function storeToLocal(key: string, data): void {
     window.localStorage.setItem(key, JSON.stringify(data))
@@ -26,11 +28,11 @@ export function restoreSettings(): Settings {
 }
 
 export function storeRssData(url: string, items: Item[]): void {
-    const key = RSS_DATA_KEY_PREFIX + md5(url)
+    const key = RSS_DATA_KEY_PREFIX + cacheKeyFromURL(url)
     storeToLocal(key, items)
 }
 
 export function restoreRssData(url: string): RSSData {
-    const key = RSS_DATA_KEY_PREFIX + md5(url)
+    const key = RSS_DATA_KEY_PREFIX + cacheKeyFromURL(url)
     return restoreFromLocal(key)
 }
