@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect } from 'react'
+import { FunctionComponent } from 'preact'
+import { useEffect } from 'preact/hooks'
 
 import fetchFeeds from './utils/fetchFeeds'
 import NavigationBar from './NavigationBar'
@@ -8,7 +9,7 @@ import { panelIdentifiers } from './constants'
 import { restoreSettings } from './utils/persistence'
 import useAppState from './utils/useAppState'
 
-export default function App(): ReactNode {
+export default function App(): FunctionComponent<> {
     const [state, actions] = useAppState()
     const { setActivePanel, setFeeds, setFeedUrls } = actions
 

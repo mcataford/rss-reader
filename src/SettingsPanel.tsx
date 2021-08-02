@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from 'react'
+import { useState } from 'preact/hooks'
+import { FunctionComponent } from 'preact'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -31,7 +32,7 @@ function isValidUrl(url: string): boolean {
     return urlPattern.test(url)
 }
 
-export default function SettingsPanel(props: Props): ReactNode {
+export default function SettingsPanel(props: Props): FunctionComponent<Props> {
     const { feedUrls, setFeedUrls } = props
     const [feedUrlsForm, setFeedUrlsForm] = useState(feedUrls)
 

@@ -1,4 +1,4 @@
-import { useReducer, useRef } from 'react'
+import { useReducer, useRef } from 'preact/hooks'
 
 import type { State } from '../types'
 import { panelIdentifiers } from '../constants'
