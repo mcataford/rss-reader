@@ -67,6 +67,9 @@ export default async function fetchFeeds(
             const response = await fetch(
                 `/.netlify/functions/rss-proxy?url=${url}`,
             )
+
+            if (!response.ok) return storedFeedData
+
             const responseData = await response.text()
 
             try {
@@ -87,5 +90,5 @@ export default async function fetchFeeds(
         }),
     )
 
-    return feeds
+    return feeds.filter((feed) => feed)
 }
