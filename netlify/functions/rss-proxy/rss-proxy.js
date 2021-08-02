@@ -3,7 +3,9 @@ const https = require('https')
 async function httpGet(url) {
     return new Promise((resolve) => {
         https.get(url, (response) => {
-            response.on('data', (d) => resolve(d))
+            const chunks = []
+            response.on('data', (d) => chunks.push(d))
+            response.on('end', () => resolve(chunks.join('')))
         })
     })
 }
