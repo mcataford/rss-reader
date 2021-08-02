@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { FunctionComponent } from 'preact'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     },
 })
 
-function ItemCard(props: CardProps): ReactNode {
+function ItemCard(props: CardProps) {
     const { title, url, published, feedTitle } = props
     const classes = useStyles()
 
@@ -41,7 +41,7 @@ function ItemCard(props: CardProps): ReactNode {
     )
 }
 
-function NoItemsNotice(): ReactNode {
+function NoItemsNotice() {
     return (
         <Box
             alignSelf="center"
@@ -59,7 +59,7 @@ function NoItemsNotice(): ReactNode {
     )
 }
 
-export default function FeedsPanel(props: Props): ReactNode {
+export default function FeedsPanel(props: Props): FunctionComponent<Props> {
     const { feeds } = props
 
     const flattenedItems = sortFeedItemsByDate(feeds)

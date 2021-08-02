@@ -1,3 +1,6 @@
 module.exports = {
-    extends: '@tophat'
+    extends: '@tophat',
+    rules: {
+        "react/react-in-jsx-scope": "off"
+    }
 }

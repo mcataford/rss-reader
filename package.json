@@ -3,10 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "license": "GPL-3.0",
-  "alias": {
-    "react": "preact/compat",
-    "react-dom": "preact/compat"
-  },
   "scripts": {
     "start": "netlify dev",
     "start:parcel": "parcel serve src/index.html",
@@ -46,5 +42,9 @@
     "@material-ui/icons": "^4.11.2",
     "htmlparser2": "^6.1.0",
     "preact": "^10.5.14"
+  },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
   }
 }

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { FunctionComponent } from 'preact'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -23,7 +23,9 @@ function getAvailableDestinations(activePanel: string): string[] {
     )
 }
 
-export default function NavigationBar(props: NavigationBarProps): ReactNode {
+export default function NavigationBar(
+    props: NavigationBarProps,
+): FunctionComponent<NavigationBarProps> {
     const { activePanel, setActivePanel } = props
 
     const classes = useStyles()
