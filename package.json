@@ -46,5 +46,6 @@
   "alias": {
     "react": "preact/compat",
     "react-dom": "preact/compat"
-  }
+  },
+  "packageManager": "yarn@sources"
 }

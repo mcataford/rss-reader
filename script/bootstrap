@@ -1,0 +1,5 @@
+#!/bin/bash
+
+nvm install
+
+yarn dlx @yarnpkg/sdks vim

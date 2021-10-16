@@ -3,7 +3,8 @@
 !.yarn/patches
 !.yarn/releases
 !.yarn/plugins
-!.yarn/sdks
+.yarn/sdks
+.vim
 !.yarn/versions
 .pnp.*
 
