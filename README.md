@@ -17,6 +17,13 @@ The whole thing runs on [Netlify](https://www.netlify.com/)'s generous free tier
 Feel free to use it for your own RSS needs and to [drop a word or
 two](https://github.com/mcataford/rss-reader/discussions/10) if you do. :tada:
 
+## Developping
+
+`. script/bootstrap` will set up the correct version of Node (via nvm) as well as Yarn's vim SDK.
+
+Once set up, `yarn start` will run the application locally (including a local instance of the Netlify function that
+handles CORS proxying).
+
 ## Contributing
 
 The project welcomes contributions as long as they fit within the general roadmap, which is still TBD. Any contribution
