@@ -36,6 +36,16 @@ export function NavigationProvider({
         [setLocation],
     )
 
+    const suffixedLocation = location.endsWith('/') ? location : `${location}/`
+
+    if (suffixedLocation !== location) {
+        window.history.replaceState({}, '', suffixedLocation)
+        setLocation(suffixedLocation)
+    }
+
+    if (!Object.values(routes).includes(suffixedLocation))
+        navigate(routes.FEEDS)
+
     return (
         <NavigationContext.Provider value={{ location, navigate }}>
             {children}
