@@ -4,12 +4,11 @@ import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { Settings } from './types'
+import useLocalStorage from './hooks/useLocalStorage'
+import useRSSFeeds from './hooks/useRSSFeeds'
 import sortFeedItemsByDate from './utils/sortFeedItemsByDate'
-import type { Feed } from './types'
 
-interface Props {
-    feeds: Feed[]
-}
 interface CardProps {
     title: string
     url: string
@@ -59,8 +58,10 @@ function NoItemsNotice() {
     )
 }
 
-export default function FeedsPanel(props: Props): FunctionComponent<Props> {
-    const { feeds } = props
+export default function FeedsPanel(): FunctionComponent {
+    const { getValue } = useLocalStorage({ isJSON: true })
+    const settings = getValue<Settings>('settings')
+    const { feeds } = useRSSFeeds(settings.feedUrls)
 
     const flattenedItems = sortFeedItemsByDate(feeds)
 

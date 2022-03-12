@@ -9,12 +9,8 @@ import Button from '@material-ui/core/Button'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 
-import { storeSettings } from './utils/persistence'
-
-interface Props {
-    feedUrls: string[]
-    setFeedUrls: (s: string[]) => void
-}
+import { Settings } from './types'
+import useLocalStorage from './hooks/useLocalStorage'
 
 const useStyles = makeStyles({
     urlCard: {
@@ -32,9 +28,10 @@ function isValidUrl(url: string): boolean {
     return urlPattern.test(url)
 }
 
-export default function SettingsPanel(props: Props): FunctionComponent<Props> {
-    const { feedUrls, setFeedUrls } = props
-    const [feedUrlsForm, setFeedUrlsForm] = useState(feedUrls)
+export default function SettingsPanel(): FunctionComponent {
+    const { setValue, getValue } = useLocalStorage({ isJSON: true })
+    const settings = getValue<Settings>('settings')
+    const [feedUrlsForm, setFeedUrlsForm] = useState(settings.feedUrls)
 
     const classes = useStyles()
     const urlCards = feedUrlsForm.map((url) => (
@@ -72,9 +69,11 @@ export default function SettingsPanel(props: Props): FunctionComponent<Props> {
                 color="primary"
                 onClick={() => {
                     const validUrls = feedUrlsForm.filter(isValidUrl)
-                    setFeedUrls(validUrls)
+                    setValue<Settings>('settings', {
+                        ...settings,
+                        feedUrls: validUrls,
+                    })
                     setFeedUrlsForm(validUrls)
-                    storeSettings({ feedUrls: validUrls })
                 }}
             >
                 Save
