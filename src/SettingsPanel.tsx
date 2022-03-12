@@ -9,8 +9,7 @@ import Button from '@material-ui/core/Button'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 
-import { Settings } from './types'
-import useLocalStorage from './hooks/useLocalStorage'
+import useSettings from './hooks/useSettings'
 
 const useStyles = makeStyles({
     urlCard: {
@@ -29,8 +28,8 @@ function isValidUrl(url: string): boolean {
 }
 
 export default function SettingsPanel(): FunctionComponent {
-    const { setValue, getValue } = useLocalStorage({ isJSON: true })
-    const settings = getValue<Settings>('settings')
+    const { getSettings, setSettings } = useSettings()
+    const settings = getSettings()
     const [feedUrlsForm, setFeedUrlsForm] = useState(settings.feedUrls)
 
     const classes = useStyles()
@@ -69,10 +68,7 @@ export default function SettingsPanel(): FunctionComponent {
                 color="primary"
                 onClick={() => {
                     const validUrls = feedUrlsForm.filter(isValidUrl)
-                    setValue<Settings>('settings', {
-                        ...settings,
-                        feedUrls: validUrls,
-                    })
+                    setSettings<string[]>('feedUrls', validUrls)
                     setFeedUrlsForm(validUrls)
                 }}
             >
