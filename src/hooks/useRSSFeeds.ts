@@ -81,7 +81,8 @@ export default function useRSSFeeds(urls: string[]): { feeds: Feed[] } {
                     setValue(localStorageKey, data)
                 },
                 initialData: persistedData ?? undefined,
-                initialDataUpdatedAt: persistedData?.lastPull ?? undefined,
+                initialDataUpdatedAt:
+                    Number(persistedData?.lastPull) ?? undefined,
             }
         }),
     )
