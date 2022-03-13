@@ -7,3 +7,8 @@
     targetPort = 1234
     port = 8080
     framework = "parcel"
+
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
