@@ -44,6 +44,9 @@
     "preact": "^10.5.14",
     "react-query": "^3.34.16"
   },
+  "resolutions": {
+    "minimist": "^1.2.6"
+  },
   "alias": {
     "react": "preact/compat",
     "react-dom": "preact/compat"
