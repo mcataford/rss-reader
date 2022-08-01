@@ -15044,10 +15044,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact@npm:^10.5.14":
-  version: 10.5.14
-  resolution: "preact@npm:10.5.14"
-  checksum: d936f83a2afad13aa5870812d7fa8fec111d4a1bb6b0bea6485f2656a062bcc01717398d8184c4bc589cba455f3b2def8e43ba23db846b208d9823e3804658ad
+"preact@npm:10.10.0":
+  version: 10.10.0
+  resolution: "preact@npm:10.10.0"
+  checksum: ec34f0e7a8677080debb5e7035a749d30a23694a68389e6f577e051e91a1e1014913c56845a615d1f9a4f2cd0321c46faaded4d4a0457c755d637a3a811fd69e
   languageName: node
   linkType: hard
 
@@ -16144,7 +16144,7 @@ __metadata:
     jest: ^27.0.6
     netlify-cli: ^5.2.3
     parcel: ^2.0.0
-    preact: ^10.5.14
+    preact: 10.10.0
     prettier: ^2.3.2
     react-query: 3.39.2
     typescript: ^4.3.5
