@@ -1,4 +1,4 @@
-import type { Feed, Item } from '../types'
+import type { Feed, Item } from './types'
 
 export default function sortFeedItemsByDate(feeds: Feed[]): Item[] {
     const flattened = feeds.reduce((flattenedFeeds, feed) => {
@@ -13,4 +13,8 @@ export default function sortFeedItemsByDate(feeds: Feed[]): Item[] {
     return flattened.sort((first, second) =>
         first.published > second.published ? -1 : 1,
     )
+}
+
+export function isDev(): boolean {
+    return process.env.NODE_ENV === 'development'
 }

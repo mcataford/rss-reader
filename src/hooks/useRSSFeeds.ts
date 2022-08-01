@@ -2,6 +2,7 @@ import { parseFeed } from 'htmlparser2'
 import { useQueries } from 'react-query'
 
 import { Feed } from '../types'
+import { isDev } from '../utils'
 
 import useLocalStorage from './useLocalStorage'
 
@@ -58,8 +59,10 @@ async function fetchFeed(
 
         return mergedFeeds
     } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e)
+        if (isDev()) {
+            // eslint-disable-next-line no-console
+            console.error(e)
+        }
     }
 
     return persistedData
@@ -88,7 +91,7 @@ export default function useRSSFeeds(urls: string[]): { feeds: Feed[] } {
     )
 
     const fetchedFeeds = queries.reduce((fetchedFeeds: Feed[], current) => {
-        if (current.isSuccess) fetchedFeeds.push(current.data)
+        if (current.isSuccess && current.data) fetchedFeeds.push(current.data)
 
         return fetchedFeeds
     }, [])
