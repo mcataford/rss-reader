@@ -2,7 +2,7 @@
   "name": "rss-reader",
   "private": true,
   "version": "1.0.0",
-  "packageManager": "yarn@sources",
+  "packageManager": "yarn@3.1.0",
   "license": "GPL-3.0",
   "scripts": {
     "start": "netlify dev",
