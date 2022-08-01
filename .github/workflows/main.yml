@@ -17,7 +17,7 @@ jobs:
         id: node-setup
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: cache-restore
         with:
           path: |
@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: yarn-cache-restore
         with:
           path: |
@@ -58,14 +58,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: yarn-cache-restore
         with:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
       - name: Parcel cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: parcel-cache-restore
         with:
           path: |
@@ -91,7 +91,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: yarn-cache-restore
         with:
           path: |
@@ -136,7 +136,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: yarn-cache-restore
         with:
           path: |
