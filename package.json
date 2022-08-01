@@ -2,7 +2,7 @@
   "name": "rss-reader",
   "private": true,
   "version": "1.0.0",
-  "packageManager": "yarn@3.1.0",
+  "packageManager": "yarn@sources",
   "license": "GPL-3.0",
   "scripts": {
     "start": "netlify dev",
@@ -51,6 +51,5 @@
   "alias": {
     "react": "preact/compat",
     "react-dom": "preact/compat"
-  },
-  "packageManager": "yarn@sources"
+  }
 }
