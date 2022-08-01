@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import useSettings from './hooks/useSettings'
 import useRSSFeeds from './hooks/useRSSFeeds'
-import sortFeedItemsByDate from './utils/sortFeedItemsByDate'
+import sortFeedItemsByDate from './utils'
 
 interface CardProps {
     title: string
