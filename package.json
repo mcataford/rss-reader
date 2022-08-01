@@ -43,7 +43,7 @@
     "@material-ui/icons": "4.11.3",
     "htmlparser2": "^6.1.0",
     "preact": "^10.5.14",
-    "react-query": "^3.34.16"
+    "react-query": "3.39.2"
   },
   "resolutions": {
     "minimist": "^1.2.6"
