@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Setup
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         id: node-setup
         with:
@@ -31,7 +31,7 @@ jobs:
     name: Lint
     needs: setup
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         id: node-setup
         with:
@@ -52,7 +52,7 @@ jobs:
     name: Build
     needs: setup
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         id: node-setup
         with:
@@ -85,7 +85,7 @@ jobs:
     if: ${{ github.ref != 'refs/heads/main' }}
     needs: build
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         id: node-setup
         with:
@@ -130,7 +130,7 @@ jobs:
     needs: build
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         id: node-setup
         with:
