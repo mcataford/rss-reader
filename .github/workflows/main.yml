@@ -112,7 +112,7 @@ jobs:
           yarn netlify deploy --dir=dist > output.log
           echo "::set-output name=draft-url::$(grep 'Website Draft URL' output.log)"
       - name: Report
-        uses: actions/github-script@v2
+        uses: actions/github-script@v6
         env:
           DRAFT_URL: ${{ steps.preview-deploy.outputs.draft-url }}
         with:
