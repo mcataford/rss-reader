@@ -38,8 +38,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.1",
-    "@material-ui/icons": "^4.11.2",
+    "@material-ui/core": "4.12.4",
+    "@material-ui/icons": "4.11.3",
     "htmlparser2": "^6.1.0",
     "preact": "^10.5.14",
     "react-query": "^3.34.16"
