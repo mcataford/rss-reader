@@ -1,13 +1,13 @@
-import { useState } from 'preact/hooks'
-import { FunctionComponent } from 'preact'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
+import { FunctionComponent } from 'preact'
+import { useState } from 'preact/hooks'
 
 import useSettings from './hooks/useSettings'
 

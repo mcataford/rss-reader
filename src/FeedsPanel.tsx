@@ -1,11 +1,11 @@
-import { FunctionComponent } from 'preact'
 import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
+import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import { FunctionComponent } from 'preact'
 
-import useSettings from './hooks/useSettings'
 import useRSSFeeds from './hooks/useRSSFeeds'
+import useSettings from './hooks/useSettings'
 import sortFeedItemsByDate from './utils'
 
 interface CardProps {

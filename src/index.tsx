@@ -2,11 +2,11 @@ if (process.env.NODE_ENV === 'development') {
     require('preact/debug')
 }
 
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { render } from 'preact'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
-import { NavigationProvider } from './hooks/useNavigation'
 import App from './App'
+import { NavigationProvider } from './hooks/useNavigation'
 
 const queryClient = new QueryClient()
 
