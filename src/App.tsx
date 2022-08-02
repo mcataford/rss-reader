@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'preact'
 
-import useNavigation, { routes } from './hooks/useNavigation'
-import NavigationBar from './NavigationBar'
 import FeedsPanel from './FeedsPanel'
+import NavigationBar from './NavigationBar'
 import SettingsPanel from './SettingsPanel'
+import useNavigation, { routes } from './hooks/useNavigation'
 
 export default function App(): FunctionComponent {
     const { location } = useNavigation()
