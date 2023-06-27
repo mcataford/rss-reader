@@ -6,6 +6,7 @@ on:
 
 env:
   NODE_VERSION: 18
+  CI: 1
 
 jobs:
   setup:
