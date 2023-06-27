@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: dist
+          path: packages/app/dist
   preview:
     runs-on: ubuntu-latest
     name: Deploy preview
@@ -103,14 +103,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
-          path: dist
+          path: packages/app/dist
       - name: Deploy
         id: preview-deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          yarn netlify deploy --dir=dist --json | jq .deploy_url > output.log
+          yarn netlify deploy --dir=packages/app/dist --json | jq .deploy_url > output.log
           echo "::set-output name=draft-url::$(cat output.log)"
       - name: Report
         uses: actions/github-script@v6
@@ -157,4 +157,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          yarn netlify deploy --dir=dist --prod
+          yarn netlify deploy --dir=packages/app/dist --prod

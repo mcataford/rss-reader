@@ -3,7 +3,7 @@
 
 [dev]
     command = "yarn start:parcel"
-    publish = "dist"
+    publish = "packages/app/dist"
     targetPort = 1234
     port = 8080
     framework = "parcel"
