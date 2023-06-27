@@ -9,13 +9,15 @@
   ],
   "scripts": {
     "start:app": "yarn workspace app start",
-    "lint": "eslint packages",
-    "lint:fix": "eslint packages netlify --fix",
+    "start:api": "yarn workspace api start",
+    "lint": "eslint packages/**/*.ts",
+    "lint:fix": "eslint packages/**/*.ts netlify --fix",
     "types": "tsc --noEmit",
     "clean": "rm -rf dist/*",
     "build:app": "yarn workspace app build",
     "build:app:watch": "yarn workspace app watch",
-    "build:app:bundlesize": "yarn workspace app build:bundlesize"
+    "build:app:bundlesize": "yarn workspace app build:bundlesize",
+    "build:api": "yarn workspace api build"
   },
   "devDependencies": {
     "@parcel/reporter-bundle-analyzer": "^2.9.3",

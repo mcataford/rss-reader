@@ -80,6 +80,39 @@ jobs:
         with:
           name: build-artifacts
           path: packages/app/dist
+  build-api:
+    runs-on: ubuntu-latest
+    name: Build API
+    needs: setup
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        id: node-setup
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Yarn cache
+        uses: actions/cache@v3
+        id: yarn-cache-restore
+        with:
+          path: |
+            .yarn
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
+      - name: Parcel cache
+        uses: actions/cache@v3
+        id: parcel-cache-restore
+        with:
+          path: |
+            .parcel-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}-parcel
+      - run: |
+          . script/bootstrap
+          yarn build:api
+      - name: Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts-api
+          path: packages/api/dist
+
   preview:
     runs-on: ubuntu-latest
     name: Deploy preview
