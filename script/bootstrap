@@ -1,5 +1,7 @@
 #!/bin/bash
 
-nvm install
+if [[ $CI != 1 ]]; then
+    nvm use
+fi
 
-yarn dlx @yarnpkg/sdks vim
+corepack enable && yarn
