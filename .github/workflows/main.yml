@@ -48,9 +48,9 @@ jobs:
         run: |
           . script/bootstrap
           yarn lint
-  build:
+  build-app:
     runs-on: ubuntu-latest
-    name: Build
+    name: Build App
     needs: setup
     steps:
       - uses: actions/checkout@v3
@@ -74,7 +74,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}-parcel
       - run: |
           . script/bootstrap
-          yarn build
+          yarn build:app
       - name: Build Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy preview
     if: ${{ github.ref != 'refs/heads/main' }}
-    needs: build
+    needs: build-app
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -128,7 +128,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
-    needs: build
+    needs: build-app
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v3
