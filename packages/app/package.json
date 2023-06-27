@@ -1,0 +1,29 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "yarn@3.3.1",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "netlify dev",
+    "start:parcel": "parcel serve src/index.html",
+    "build": "parcel build src/index.html",
+    "build:watch": "parcel watch src/index.html",
+    "build:bundlesize": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
+  },
+  "dependencies": {
+    "@material-ui/core": "4.12.4",
+    "@material-ui/icons": "4.11.3",
+    "htmlparser2": "8.0.1",
+    "preact": "10.11.3",
+    "react-query": "3.39.2"
+  },
+  "resolutions": {
+    "minimist": "^1.2.6"
+  },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat",
+    "preact/jsx-dev-runtime": "preact/jsx-runtime"
+  }
+}

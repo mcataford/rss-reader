@@ -11,6 +11,7 @@
 .parcel-cache
 parcel-bundle-reports
 dist
+packages/**/dist
 
 # Logs
 logs
