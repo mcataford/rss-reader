@@ -1,5 +1,3 @@
 #!/bin/bash
 
-nvm install
-
-yarn dlx @yarnpkg/sdks vim
+nvm use && corepack enable && yarn
