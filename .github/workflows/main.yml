@@ -25,7 +25,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
       - name: Install dependencies
         if: steps.cache-restore.outputs.cache-hit != 'true'
-        run: yarn
+        run: . script/bootstrap
   lint:
     runs-on: ubuntu-latest
     name: Lint
@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
       - name: Lint
         run: |
-          yarn
+          . script/bootstrap
           yarn lint
   build:
     runs-on: ubuntu-latest
@@ -72,7 +72,7 @@ jobs:
             .parcel-cache
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}-parcel
       - run: |
-          yarn
+          . script/bootstrap
           yarn build
       - name: Build Artifacts
         uses: actions/upload-artifact@v3
@@ -97,7 +97,7 @@ jobs:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - run: yarn
+      - run: . script/bootstrap
       - name: Build Artifacts
         uses: actions/download-artifact@v3
         with:
@@ -142,7 +142,7 @@ jobs:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - run: yarn
+      - run: . script/bootstrap
       - name: Build Artifacts
         uses: actions/download-artifact@v3
         with:
