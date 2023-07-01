@@ -1,25 +1,25 @@
-import { Settings } from '../types'
+import { Settings } from "../types";
 
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from "./useLocalStorage";
 
 const defaultSettings = {
-    feedUrls: [],
-}
+	feedUrls: [],
+};
 
 export default function useSettings(): {
-    getSettings: () => Settings
-    setSettings: <T>(k: string, value: T) => void
+	getSettings: () => Settings;
+	setSettings: <T>(k: string, value: T) => void;
 } {
-    const { getValue, setValue } = useLocalStorage({ isJSON: true })
+	const { getValue, setValue } = useLocalStorage({ isJSON: true });
 
-    const getSettings = (): Settings =>
-        getValue<Settings>('settings') ?? defaultSettings
+	const getSettings = (): Settings =>
+		getValue<Settings>("settings") ?? defaultSettings;
 
-    const setSettings = <T>(key: string, value: T) => {
-        const current = getSettings()
+	const setSettings = <T>(key: string, value: T) => {
+		const current = getSettings();
 
-        setValue<Settings>('settings', { ...current, [key]: value })
-    }
+		setValue<Settings>("settings", { ...current, [key]: value });
+	};
 
-    return { getSettings, setSettings }
+	return { getSettings, setSettings };
 }
