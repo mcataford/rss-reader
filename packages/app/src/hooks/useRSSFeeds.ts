@@ -60,7 +60,6 @@ async function fetchFeed(
 		return mergedFeeds;
 	} catch (e) {
 		if (isDev()) {
-			// eslint-disable-next-line no-console
 			console.error(e);
 		}
 	}
