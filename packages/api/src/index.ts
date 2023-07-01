@@ -1,14 +1,14 @@
 import {
-    type Express,
-    type Request,
-    type Response,
-    default as express,
-} from 'express'
+	type Express,
+	type Request,
+	type Response,
+	default as express,
+} from "express";
 
-const app: Express = express()
+const app: Express = express();
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('ok')
-})
+app.get("/", (req: Request, res: Response) => {
+	res.send("ok");
+});
 
-app.listen(8081, () => {})
+app.listen(8081, () => {});
