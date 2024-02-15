@@ -3344,49 +3344,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/body-parser@npm:*":
-  version: 1.19.2
-  resolution: "@types/body-parser@npm:1.19.2"
-  dependencies:
-    "@types/connect": "npm:*"
-    "@types/node": "npm:*"
-  checksum: 10/e17840c7d747a549f00aebe72c89313d09fbc4b632b949b2470c5cb3b1cb73863901ae84d9335b567a79ec5efcfb8a28ff8e3f36bc8748a9686756b6d5681f40
-  languageName: node
-  linkType: hard
-
-"@types/connect@npm:*":
-  version: 3.4.35
-  resolution: "@types/connect@npm:3.4.35"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10/fe81351470f2d3165e8b12ce33542eef89ea893e36dd62e8f7d72566dfb7e448376ae962f9f3ea888547ce8b55a40020ca0e01d637fab5d99567673084542641
-  languageName: node
-  linkType: hard
-
-"@types/express-serve-static-core@npm:^4.17.33":
-  version: 4.17.35
-  resolution: "@types/express-serve-static-core@npm:4.17.35"
-  dependencies:
-    "@types/node": "npm:*"
-    "@types/qs": "npm:*"
-    "@types/range-parser": "npm:*"
-    "@types/send": "npm:*"
-  checksum: 10/9f08212ac163e9b2a1005d84cc43ace52d5057dfaa009c575eb3f3a659949b9c9cecec0cbff863622871c56e1c604bd67857a5e1d353256eaf9adacec59f87bf
-  languageName: node
-  linkType: hard
-
-"@types/express@npm:^4.17.17":
-  version: 4.17.17
-  resolution: "@types/express@npm:4.17.17"
-  dependencies:
-    "@types/body-parser": "npm:*"
-    "@types/express-serve-static-core": "npm:^4.17.33"
-    "@types/qs": "npm:*"
-    "@types/serve-static": "npm:*"
-  checksum: 10/e2959a5fecdc53f8a524891a16e66dfc330ee0519e89c2579893179db686e10cfa6079a68e0fb8fd00eedbcaf3eabfd10916461939f3bc02ef671d848532c37e
-  languageName: node
-  linkType: hard
-
 "@types/graceful-fs@npm:^4.1.3":
   version: 4.1.5
   resolution: "@types/graceful-fs@npm:4.1.5"
@@ -3400,13 +3357,6 @@ __metadata:
   version: 4.0.1
   resolution: "@types/http-cache-semantics@npm:4.0.1"
   checksum: 10/d059bf8a15d5163cc60da51ba00d17620507f968d0b792cd55f62043016344a5f0e1aa94fa411089d41114035fcd0ea656f968bda7eabb6663a97787e3445a1c
-  languageName: node
-  linkType: hard
-
-"@types/http-errors@npm:*":
-  version: 2.0.1
-  resolution: "@types/http-errors@npm:2.0.1"
-  checksum: 10/3bb0c50b0a652e679a84c30cd0340d696c32ef6558518268c238840346c077f899315daaf1c26c09c57ddd5dc80510f2a7f46acd52bf949e339e35ed3ee9654f
   languageName: node
   linkType: hard
 
@@ -3444,21 +3394,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mime@npm:*":
-  version: 3.0.1
-  resolution: "@types/mime@npm:3.0.1"
-  checksum: 10/4040fac73fd0cea2460e29b348c1a6173da747f3a87da0dbce80dd7a9355a3d0e51d6d9a401654f3e5550620e3718b5a899b2ec1debf18424e298a2c605346e7
-  languageName: node
-  linkType: hard
-
-"@types/mime@npm:^1":
-  version: 1.3.2
-  resolution: "@types/mime@npm:1.3.2"
-  checksum: 10/0493368244cced1a69cb791b485a260a422e6fcc857782e1178d1e6f219f1b161793e9f87f5fae1b219af0f50bee24fcbe733a18b4be8fdd07a38a8fb91146fd
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:*, @types/node@npm:^20.3.2":
+"@types/node@npm:*":
   version: 20.3.2
   resolution: "@types/node@npm:20.3.2"
   checksum: 10/e40a7dbfa00ed34cb46b0b9f96e04f51d676d3a719c2763ead831f7875e6a3411356973e99741821f8857dba5c26c00cad79f5c5b9b62af5c9f5ff7eafb02a21
@@ -3493,20 +3429,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qs@npm:*":
-  version: 6.9.7
-  resolution: "@types/qs@npm:6.9.7"
-  checksum: 10/7fd6f9c25053e9b5bb6bc9f9f76c1d89e6c04f7707a7ba0e44cc01f17ef5284adb82f230f542c2d5557d69407c9a40f0f3515e8319afd14e1e16b5543ac6cdba
-  languageName: node
-  linkType: hard
-
-"@types/range-parser@npm:*":
-  version: 1.2.4
-  resolution: "@types/range-parser@npm:1.2.4"
-  checksum: 10/b7c0dfd5080a989d6c8bb0b6750fc0933d9acabeb476da6fe71d8bdf1ab65e37c136169d84148034802f48378ab94e3c37bb4ef7656b2bec2cb9c0f8d4146a95
-  languageName: node
-  linkType: hard
-
 "@types/react-transition-group@npm:^4.2.0":
   version: 4.4.2
   resolution: "@types/react-transition-group@npm:4.4.2"
@@ -3538,27 +3460,6 @@ __metadata:
   version: 0.16.2
   resolution: "@types/scheduler@npm:0.16.2"
   checksum: 10/b6b4dcfeae6deba2e06a70941860fb1435730576d3689225a421280b7742318d1548b3d22c1f66ab68e414f346a9542f29240bc955b6332c5b11e561077583bc
-  languageName: node
-  linkType: hard
-
-"@types/send@npm:*":
-  version: 0.17.1
-  resolution: "@types/send@npm:0.17.1"
-  dependencies:
-    "@types/mime": "npm:^1"
-    "@types/node": "npm:*"
-  checksum: 10/6420837887858f7aa82f2c0272f73edb42385bd0978f43095e83590a405d86c8cc6d918c30b2d542f1d8bddc9f3d16c2e8fdfca936940de71b97c45f228d1896
-  languageName: node
-  linkType: hard
-
-"@types/serve-static@npm:*":
-  version: 1.15.2
-  resolution: "@types/serve-static@npm:1.15.2"
-  dependencies:
-    "@types/http-errors": "npm:*"
-    "@types/mime": "npm:*"
-    "@types/node": "npm:*"
-  checksum: 10/d5f8f5aaa765be6417aa3f2ebe36591f4e9d2d8a7480edf7d3db041427420fd565cb921fc021271098dd2afafce2b443fc0d978faa3ae21a2a58ebde7d525e9e
   languageName: node
   linkType: hard
 
@@ -4038,29 +3939,6 @@ __metadata:
   checksum: 10/985163db2292fac9e5a1e072bf99f1b5baccf196e4de25a0b0b81865ebddeb3b3eb4480734ef0a2ac8c002845396b91aa89121f5b84f93981a4658164a9ec6e9
   languageName: node
   linkType: hard
-
-"api@workspace:packages/api":
-  version: 0.0.0-use.local
-  resolution: "api@workspace:packages/api"
-  dependencies:
-    "@types/express": "npm:^4.17.17"
-    "@types/node": "npm:^20.3.2"
-    express: "npm:^4.18.2"
-    typescript: "npm:*"
-  languageName: unknown
-  linkType: soft
-
-"app@workspace:packages/app":
-  version: 0.0.0-use.local
-  resolution: "app@workspace:packages/app"
-  dependencies:
-    "@material-ui/core": "npm:4.12.4"
-    "@material-ui/icons": "npm:4.11.3"
-    htmlparser2: "npm:8.0.1"
-    preact: "npm:10.11.3"
-    react-query: "npm:3.39.2"
-  languageName: unknown
-  linkType: soft
 
 "aproba@npm:^1.0.3":
   version: 1.2.0
@@ -6450,7 +6328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.18.2, express@npm:^4.18.2":
+"express@npm:4.18.2":
   version: 4.18.2
   resolution: "express@npm:4.18.2"
   dependencies:
@@ -12121,12 +11999,17 @@ __metadata:
   resolution: "rss-reader@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.5.3"
+    "@material-ui/core": "npm:4.12.4"
+    "@material-ui/icons": "npm:4.11.3"
     "@parcel/reporter-bundle-analyzer": "npm:^2.9.3"
     "@parcel/validator-typescript": "npm:^2.9.3"
     esbuild: "npm:^0.17.3"
+    htmlparser2: "npm:8.0.1"
     jest: "npm:29.3.1"
     netlify-cli: "npm:^15.7.0"
     parcel: "npm:^2.9.3"
+    preact: "npm:10.11.3"
+    react-query: "npm:3.39.2"
     typescript: "npm:^4.9.4"
   languageName: unknown
   linkType: soft
@@ -13428,16 +13311,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*, typescript@npm:^5.0.0, typescript@npm:^5.0.4":
-  version: 5.1.3
-  resolution: "typescript@npm:5.1.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/2d656e635d85a8354955d4f63e5835f5217b1d2b0cea7d82409e324bd7d24f68883e43208a9b250b764bbf2833d83878c05de55dbe4b8b73996b2025c6e50140
-  languageName: node
-  linkType: hard
-
 "typescript@npm:^4.9.4":
   version: 4.9.4
   resolution: "typescript@npm:4.9.4"
@@ -13448,13 +13321,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A*#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.4#optional!builtin<compat/typescript>":
+"typescript@npm:^5.0.0, typescript@npm:^5.0.4":
   version: 5.1.3
-  resolution: "typescript@patch:typescript@npm%3A5.1.3#optional!builtin<compat/typescript>::version=5.1.3&hash=5da071"
+  resolution: "typescript@npm:5.1.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/dade91ba4155d0e9eb58a83cfec0d8271fefedc87b106443c396f9961aa8b231f8585d283b126a8373897aff7823da7874ce5c0b3b18a548b51ffb474f01565e
+  checksum: 10/2d656e635d85a8354955d4f63e5835f5217b1d2b0cea7d82409e324bd7d24f68883e43208a9b250b764bbf2833d83878c05de55dbe4b8b73996b2025c6e50140
   languageName: node
   linkType: hard
 
@@ -13465,6 +13338,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/ba4a4e17588978b841063149387dd880b8f6db8dac81ef30ae437498b07aa1eb415a79e42e03e341dc02cee58e8db21d564680285e4e86b1de8df04f0fcdbc95
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.0.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.0.4#optional!builtin<compat/typescript>":
+  version: 5.1.3
+  resolution: "typescript@patch:typescript@npm%3A5.1.3#optional!builtin<compat/typescript>::version=5.1.3&hash=5da071"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/dade91ba4155d0e9eb58a83cfec0d8271fefedc87b106443c396f9961aa8b231f8585d283b126a8373897aff7823da7874ce5c0b3b18a548b51ffb474f01565e
   languageName: node
   linkType: hard
 

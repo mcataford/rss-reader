@@ -4,20 +4,23 @@
   "version": "1.0.0",
   "packageManager": "yarn@4.1.0",
   "license": "GPL-3.0",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "start:app": "yarn workspace app start",
-    "start:api": "yarn workspace api start",
-    "lint": "yarn biome format packages/**/src/*.ts && yarn biome check packages/**/src/*.ts",
-    "lint:fix": "yarn biome format packages/**/src/*.ts --write && yarn biome check packages/**/src/*.ts --apply",
+    "lint": "yarn biome format src/*.ts && yarn biome check src/*.ts",
+    "lint:fix": "yarn biome format src/*.ts --write && yarn biome check src/*.ts --apply",
     "types": "tsc --noEmit",
     "clean": "rm -rf dist/*",
-    "build:app": "yarn workspace app build",
-    "build:app:watch": "yarn workspace app watch",
-    "build:app:bundlesize": "yarn workspace app build:bundlesize",
-    "build:api": "yarn workspace api build"
+    "start": "netlify dev",
+    "start:parcel": "parcel serve src/index.html",
+    "build": "parcel build src/index.html",
+    "build:watch": "parcel watch src/index.html",
+    "build:bundlesize": "parcel build src/index.html --reporter @parcel/reporter-bundle-analyzer"
+  },
+  "dependencies": {
+    "@material-ui/core": "4.12.4",
+    "@material-ui/icons": "4.11.3",
+    "htmlparser2": "8.0.1",
+    "preact": "10.11.3",
+    "react-query": "3.39.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",
