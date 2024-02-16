@@ -8,14 +8,14 @@
     "lint": "yarn biome format src/*.ts && yarn biome check src/*.ts",
     "lint:fix": "yarn biome format src/*.ts --write && yarn biome check src/*.ts --apply",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist/*",
     "start": "netlify dev",
     "start:app": "vite ./src --config ./vite.config.js --port 8080",
-    "build": "vite build ./src --config ./vite.config.js",
+    "build": "vite build ./src --config ./vite.config.js --emptyOutDir",
     "build:watch": "vite build watch ./src --config ./vite.config.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
     "htmlparser2": "8.0.1",
