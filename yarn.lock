@@ -12238,9 +12238,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-query@npm:3.39.2":
-  version: 3.39.2
-  resolution: "react-query@npm:3.39.2"
+"react-query@npm:3.39.3":
+  version: 3.39.3
+  resolution: "react-query@npm:3.39.3"
   dependencies:
     "@babel/runtime": "npm:^7.5.5"
     broadcast-channel: "npm:^3.4.1"
@@ -12252,7 +12252,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 10/9f593ebc1ef935e2baaa4650fa3c4df89872c5e00c4ce7f9529164a1811ef87e2cf1f32c79749035b974e9c08918c434174398f927e065f82220090f759b3cfc
+  checksum: 10/17dc4eb75d2ebc262b685096dfaa203202a883ac43768d0faf80f3ad4bdf791dff0691569d6e8ec2ac81b9377c5477e0a1ebea9f51bae1482ca154f5dde50d2d
   languageName: node
   linkType: hard
 
@@ -12795,7 +12795,7 @@ __metadata:
     netlify-cli: "npm:^17.16.2"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
-    react-query: "npm:3.39.2"
+    react-query: "npm:3.39.3"
     terser: "npm:^5.27.1"
     typescript: "npm:^5.3.3"
     vite: "npm:^5.1.3"
