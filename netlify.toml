@@ -2,11 +2,11 @@
     directory = "netlify/functions/"
 
 [dev]
-    command = "yarn start:parcel"
+    command = "yarn start:app"
     publish = "dist"
     targetPort = 8080
     port = 1234
-    framework = "parcel"
+    framework = "vite"
 
 [[redirects]]
     from = "/*"
