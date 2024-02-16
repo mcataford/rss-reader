@@ -47,10 +47,31 @@ jobs:
         run: |
           . script/bootstrap.sh
           yarn lint
+  typecheck:
+    runs-on: ubuntu-latest
+    name: Typecheck
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        id: node-setup
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Yarn cache
+        uses: actions/cache@v4
+        id: yarn-cache-restore
+        with:
+          path: |
+            .yarn
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
+      - name: Lint
+        run: |
+          . script/bootstrap.sh
+          yarn typecheck
   build-app:
     runs-on: ubuntu-latest
     name: Build App
-    needs: setup
+    needs: [typecheck, lint]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

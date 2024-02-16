@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "yarn biome format src/*.ts && yarn biome check src/*.ts",
     "lint:fix": "yarn biome format src/*.ts --write && yarn biome check src/*.ts --apply",
-    "types": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist/*",
     "start": "netlify dev",
     "start:app": "vite ./src --config ./vite.config.js --port 8080",
