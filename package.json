@@ -18,7 +18,7 @@
     "@emotion/react": "^11.11.3",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
-    "htmlparser2": "8.0.1",
+    "htmlparser2": "8.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "3.39.2"
