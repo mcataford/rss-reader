@@ -1,5 +1,5 @@
 import { parseFeed } from "htmlparser2";
-import { useQueries } from "react-query";
+import { useQueries } from "@tanstack/react-query";
 
 import { Feed } from "../types";
 import { isDev } from "../utils";
@@ -70,8 +70,8 @@ async function fetchFeed(
 export default function useRSSFeeds(urls: string[]): { feeds: Feed[] } {
 	const { getValue, setValue } = useLocalStorage({ isJSON: true });
 
-	const queries = useQueries(
-		urls.map((feedUrl: string) => {
+	const queries = useQueries({
+		queries: urls.map((feedUrl: string) => {
 			const localStorageKey = `feed_${feedUrl}`;
 			const persistedData = getValue<Feed>(localStorageKey);
 
@@ -86,7 +86,7 @@ export default function useRSSFeeds(urls: string[]): { feeds: Feed[] } {
 				initialDataUpdatedAt: Number(persistedData?.lastPull) ?? undefined,
 			};
 		}),
-	);
+	});
 
 	const fetchedFeeds = queries.reduce((fetchedFeeds: Feed[], current) => {
 		if (current.isSuccess && current.data) fetchedFeeds.push(current.data);

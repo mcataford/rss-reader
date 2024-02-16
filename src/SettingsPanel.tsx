@@ -8,17 +8,17 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { useState } from "react";
 
-import { css } from "@emotion/react"
+import { css } from "@emotion/react";
 
 import useSettings from "./hooks/useSettings";
 
 const urlCard = {
-		margin: "5px",
-		padding: "5px",
-		display: "flex",
-		alignItems: "center",
-		gap: "5px",
-}
+	margin: "5px",
+	padding: "5px",
+	display: "flex",
+	alignItems: "center",
+	gap: "5px",
+};
 function isValidUrl(url: string): boolean {
 	const urlPattern = /(https?:\/\/)?(www\.)?[\w.-_]+\.[a-zA-Z]{2,3}/;
 

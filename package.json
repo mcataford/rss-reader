@@ -5,8 +5,8 @@
   "packageManager": "yarn@4.1.0",
   "license": "GPL-3.0",
   "scripts": {
-    "lint": "yarn biome format src/*.ts && yarn biome check src/*.ts",
-    "lint:fix": "yarn biome format src/*.ts --write && yarn biome check src/*.ts --apply",
+    "lint": "yarn biome format src/**/*.ts src/**/*.tsx && yarn biome check src/**/*.ts src/**/*.tsx",
+    "lint:fix": "yarn biome format src/**/*.ts src/**/*.tsx --write && yarn biome check src/**/*.ts src/**/*.tsx --apply",
     "typecheck": "tsc --noEmit",
     "start": "netlify dev",
     "start:app": "vite ./src --config ./vite.config.js --port 8080",
@@ -18,10 +18,10 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
+    "@tanstack/react-query": "^5.20.5",
     "htmlparser2": "^9.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-query": "3.39.2"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.5.3",

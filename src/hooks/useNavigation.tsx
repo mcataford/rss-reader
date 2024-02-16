@@ -27,13 +27,10 @@ export function NavigationProvider({
 }) {
 	const [location, setLocation] = useState<string>(window.location.pathname);
 
-	const navigate = useCallback(
-		(url: string) => {
-			window.history.pushState({}, "", url);
-			setLocation(url);
-		},
-		[setLocation],
-	);
+	const navigate = useCallback((url: string) => {
+		window.history.pushState({}, "", url);
+		setLocation(url);
+	}, []);
 
 	const suffixedLocation = location.endsWith("/") ? location : `${location}/`;
 

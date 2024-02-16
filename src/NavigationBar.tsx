@@ -6,8 +6,8 @@ import Typography from "@mui/material/Typography";
 import useNavigation, { routes } from "./hooks/useNavigation";
 
 const title = {
-	flexGrow: 1
-}
+	flexGrow: 1,
+};
 
 const routePrettyNames = {
 	[routes.SETTINGS]: "Settings",
@@ -21,7 +21,7 @@ export default function NavigationBar() {
 		<>
 			<AppBar position="fixed">
 				<Toolbar>
-                    <Typography variant="h6" style={title}>
+					<Typography variant="h6" style={title}>
 						{routePrettyNames[location]}
 					</Typography>
 					<Button
@@ -40,7 +40,7 @@ export default function NavigationBar() {
 					</Button>
 				</Toolbar>
 			</AppBar>
-            <div style={{ minHeight: '64px' }}/>
+			<div style={{ minHeight: "64px" }} />
 		</>
 	);
 }

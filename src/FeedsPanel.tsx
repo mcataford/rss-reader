@@ -13,12 +13,12 @@ interface CardProps {
 	feedTitle: string;
 }
 
-const root= {
-		margin: "5px",
-		padding: "10px",
-		display: "flex",
-		flexDirection: "column",
-}
+const root = {
+	margin: "5px",
+	padding: "10px",
+	display: "flex",
+	flexDirection: "column",
+};
 
 function ItemCard(props: CardProps) {
 	const { title, url, published, feedTitle } = props;
