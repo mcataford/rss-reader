@@ -1,40 +1,37 @@
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import { FunctionComponent } from "preact";
-import { useState } from "preact/hooks";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/material/styles";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { useState } from "react";
+
+import { css } from "@emotion/react"
 
 import useSettings from "./hooks/useSettings";
 
-const useStyles = makeStyles({
-	urlCard: {
+const urlCard = {
 		margin: "5px",
 		padding: "5px",
 		display: "flex",
 		alignItems: "center",
 		gap: "5px",
-	},
-});
-
+}
 function isValidUrl(url: string): boolean {
 	const urlPattern = /(https?:\/\/)?(www\.)?[\w.-_]+\.[a-zA-Z]{2,3}/;
 
 	return urlPattern.test(url);
 }
 
-export default function SettingsPanel(): FunctionComponent {
+export default function SettingsPanel() {
 	const { getSettings, setSettings } = useSettings();
 	const settings = getSettings();
 	const [feedUrlsForm, setFeedUrlsForm] = useState(settings.feedUrls);
 
-	const classes = useStyles();
 	const urlCards = feedUrlsForm.map((url) => (
-		<Card key={`url_${url}`} variant="outlined" className={classes.urlCard}>
+		<Card key={`url_${url}`} variant="outlined" style={urlCard}>
 			{isValidUrl(url) ? (
 				<CheckCircleOutlineIcon color="primary" />
 			) : (

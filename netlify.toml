@@ -4,8 +4,8 @@
 [dev]
     command = "yarn start:parcel"
     publish = "dist"
-    targetPort = 1234
-    port = 8080
+    targetPort = 8080
+    port = 1234
     framework = "parcel"
 
 [[redirects]]

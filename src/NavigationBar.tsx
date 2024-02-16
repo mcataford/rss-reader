@@ -1,32 +1,27 @@
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { FunctionComponent } from "preact";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 import useNavigation, { routes } from "./hooks/useNavigation";
 
-const useStyles = makeStyles((theme) => ({
-	offset: theme.mixins.toolbar,
-	title: { flexGrow: 1 },
-}));
+const title = {
+	flexGrow: 1
+}
 
 const routePrettyNames = {
 	[routes.SETTINGS]: "Settings",
 	[routes.FEEDS]: "Your feeds",
 };
 
-export default function NavigationBar(): FunctionComponent {
+export default function NavigationBar() {
 	const { location, navigate } = useNavigation();
-
-	const classes = useStyles();
 
 	return (
 		<>
 			<AppBar position="fixed">
 				<Toolbar>
-					<Typography edge="start" variant="h6" className={classes.title}>
+                    <Typography variant="h6" style={title}>
 						{routePrettyNames[location]}
 					</Typography>
 					<Button
@@ -45,7 +40,7 @@ export default function NavigationBar(): FunctionComponent {
 					</Button>
 				</Toolbar>
 			</AppBar>
-			<div className={classes.offset} />
+            <div style={{ minHeight: '64px' }}/>
 		</>
 	);
 }
