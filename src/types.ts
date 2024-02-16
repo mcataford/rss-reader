@@ -9,6 +9,7 @@ export interface Item {
 	url: string;
 	published: Date;
 	source: string;
+	feedTitle: string;
 }
 
 export interface State {

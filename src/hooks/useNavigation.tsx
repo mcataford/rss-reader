@@ -1,5 +1,4 @@
-import { ComponentChildren, FunctionComponent, createContext } from "preact";
-import { useCallback, useContext, useState } from "preact/hooks";
+import { useCallback, useContext, useState, createContext } from "react";
 
 interface INavigationContext {
 	location: string;
@@ -24,8 +23,8 @@ export const routes = {
 export function NavigationProvider({
 	children,
 }: {
-	children: ComponentChildren;
-}): FunctionComponent<{ children: ComponentChildren }> {
+	children;
+}) {
 	const [location, setLocation] = useState<string>(window.location.pathname);
 
 	const navigate = useCallback(

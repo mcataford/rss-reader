@@ -5,20 +5,19 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: 18
-  CI: 1
+  NODE_VERSION: 20
 
 jobs:
   setup:
     runs-on: ubuntu-latest
     name: Setup
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         id: node-setup
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: cache-restore
         with:
           path: |
@@ -26,19 +25,19 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
       - name: Install dependencies
         if: steps.cache-restore.outputs.cache-hit != 'true'
-        run: . script/bootstrap
+        run: . script/bootstrap.sh
   lint:
     runs-on: ubuntu-latest
     name: Lint
     needs: setup
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         id: node-setup
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: yarn-cache-restore
         with:
           path: |
@@ -46,107 +45,88 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
       - name: Lint
         run: |
-          . script/bootstrap
+          . script/bootstrap.sh
           yarn lint
+  typecheck:
+    runs-on: ubuntu-latest
+    name: Typecheck
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        id: node-setup
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Yarn cache
+        uses: actions/cache@v4
+        id: yarn-cache-restore
+        with:
+          path: |
+            .yarn
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
+      - name: Lint
+        run: |
+          . script/bootstrap.sh
+          yarn typecheck
   build-app:
     runs-on: ubuntu-latest
     name: Build App
-    needs: setup
+    needs: [typecheck, lint]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         id: node-setup
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: yarn-cache-restore
         with:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - name: Parcel cache
-        uses: actions/cache@v3
-        id: parcel-cache-restore
-        with:
-          path: |
-            .parcel-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}-parcel
       - run: |
-          . script/bootstrap
-          yarn build:app
+          . script/bootstrap.sh
+          yarn build
       - name: Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: packages/app/dist
-  build-api:
-    runs-on: ubuntu-latest
-    name: Build API
-    needs: setup
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        id: node-setup
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: Yarn cache
-        uses: actions/cache@v3
-        id: yarn-cache-restore
-        with:
-          path: |
-            .yarn
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - name: Parcel cache
-        uses: actions/cache@v3
-        id: parcel-cache-restore
-        with:
-          path: |
-            .parcel-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}-parcel
-      - run: |
-          . script/bootstrap
-          yarn build:api
-      - name: Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts-api
-          path: packages/api/dist
-
+          path: dist
   preview:
     runs-on: ubuntu-latest
     name: Deploy preview
     if: ${{ github.ref != 'refs/heads/main' }}
     needs: build-app
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         id: node-setup
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: yarn-cache-restore
         with:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - run: . script/bootstrap
+      - run: . script/bootstrap.sh
       - name: Build Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: packages/app/dist
+          path: dist
       - name: Deploy
         id: preview-deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          yarn netlify deploy --dir=packages/app/dist --json | jq .deploy_url > output.log
+          yarn netlify deploy --dir=dist --json | jq .deploy_url > output.log
           echo "::set-output name=draft-url::$(cat output.log)"
       - name: Report
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           DRAFT_URL: ${{ steps.preview-deploy.outputs.draft-url }}
         with:
@@ -164,24 +144,24 @@ jobs:
     needs: build-app
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         id: node-setup
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Yarn cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: yarn-cache-restore
         with:
           path: |
             .yarn
           key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
-      - run: . script/bootstrap
+      - run: . script/bootstrap.sh
       - name: Build Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: packages/app/dist
+          path: dist
       - name: Netlify CLI setup
         run: npm install -g netlify-cli
       - name: Deploy
@@ -190,4 +170,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
-          yarn netlify deploy --dir=packages/app/dist --prod
+          yarn netlify deploy --dir=dist --prod

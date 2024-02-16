@@ -2,8 +2,11 @@
     "compilerOptions": {
         "target": "es2017",
         "jsx": "react-jsx",
-        "jsxImportSource": "preact",
-        "moduleResolution": "node"
+        "jsxImportSource": "react",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "rootDir": "."
     },
     "include": ["src/**/*"]
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $CI != 1 ]]; then
+if [[ -z "${CI+true}" ]]; then
     nvm use
 fi
 
