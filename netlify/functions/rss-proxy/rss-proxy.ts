@@ -1,3 +1,15 @@
+/*
+ * Fetches and parses RSS feeds.
+ *
+ * This handles the fetching, XML parsing and formatting of
+ * RSS feed data so that the frontent clients do not have to.
+ *
+ * This is operating on a "by-feed" basis such that each
+ * run only processes one feed, and the clients are expected
+ * to make multiple requests if they have a list of feeds to
+ * follow.
+ */
+
 import axios from 'axios'
 import { parseFeed } from 'htmlparser2'
 
