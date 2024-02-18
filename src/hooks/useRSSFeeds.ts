@@ -1,4 +1,3 @@
-import { parseFeed } from "htmlparser2";
 import { useQueries } from "@tanstack/react-query";
 
 import { Feed } from "../types";
@@ -26,22 +25,6 @@ function mergeFeeds(first, second) {
 	};
 }
 
-function processFeedXML(feed): Feed {
-	return {
-		title: feed.title,
-		lastPull: String(Date.now()),
-		items: feed.items.reduce((items, feedItem) => {
-			items.push({
-				title: feedItem.title,
-				url: feedItem.link,
-				published: new Date(feedItem.pubDate),
-			});
-
-			return items;
-		}, []),
-	};
-}
-
 async function fetchFeed(
 	url: string,
 	persistedData: Feed | null,
@@ -51,12 +34,10 @@ async function fetchFeed(
 	const responseData = await response.text();
 
 	try {
-		const newFeedData = parseFeed(responseData);
-		const newFeed = processFeedXML(newFeedData);
+		const fetched = JSON.parse(responseData);
 		const mergedFeeds = persistedData
-			? mergeFeeds(persistedData, newFeed)
-			: newFeed;
-
+			? mergeFeeds(persistedData, fetched)
+			: fetched;
 		return mergedFeeds;
 	} catch (e) {
 		if (isDev()) {
