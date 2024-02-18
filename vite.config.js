@@ -1,7 +1,7 @@
-import legacy from "@vitejs/plugin-legacy"
-import basicSSL from "@vitejs/plugin-basic-ssl"
-import path from "node:path"
-import { defineConfig } from "vite"
+import legacy from "@vitejs/plugin-legacy";
+import basicSSL from "@vitejs/plugin-basic-ssl";
+import path from "node:path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
 	plugins: [legacy(), basicSSL()],
@@ -30,4 +30,4 @@ export default defineConfig({
 			},
 		],
 	},
-})
+});

@@ -10,8 +10,8 @@
  * follow.
  */
 
-import axios from 'axios'
-import { parseFeed } from 'htmlparser2'
+import axios from "axios";
+import { parseFeed } from "htmlparser2";
 
 function processFeedXML(feed) {
 	return {
@@ -30,20 +30,20 @@ function processFeedXML(feed) {
 }
 
 const handler = async (event) => {
-    try {
-        const url = event.queryStringParameters.url
-        const responseData = await axios.get(url)
-        const newFeedData = parseFeed(responseData.data);
+	try {
+		const url = event.queryStringParameters.url;
+		const responseData = await axios.get(url);
+		const newFeedData = parseFeed(responseData.data);
 		const newFeed = processFeedXML(newFeedData);
 		const mergedFeeds = newFeed;
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify(mergedFeeds),
-        }
-    } catch (error) {
-        return { statusCode: 500, body: error.toString() }
-    }
-}
+		return {
+			statusCode: 200,
+			body: JSON.stringify(mergedFeeds),
+		};
+	} catch (error) {
+		return { statusCode: 500, body: error.toString() };
+	}
+};
 
-module.exports = { handler }
+module.exports = { handler };

@@ -8,5 +8,5 @@
         "skipLibCheck": true,
         "rootDir": "."
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*", "netlify/**/*"]
 }

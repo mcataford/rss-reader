@@ -5,8 +5,8 @@
   "packageManager": "yarn@4.1.0",
   "license": "GPL-3.0",
   "scripts": {
-    "lint": "yarn biome format src/**/*.ts src/**/*.tsx && yarn biome check src/**/*.ts src/**/*.tsx",
-    "lint:fix": "yarn biome format src/**/*.ts src/**/*.tsx --write && yarn biome check src/**/*.ts src/**/*.tsx --apply",
+    "lint": "yarn biome format --config-path=. . && yarn biome check --config-path=. .",
+    "lint:fix": "yarn biome format --config-path=. . --write && yarn biome check --config-path=. . --apply",
     "typecheck": "tsc --noEmit",
     "start": "netlify dev",
     "start:app": "vite ./src --config ./vite.config.js --port 8080",

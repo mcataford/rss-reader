@@ -3,6 +3,9 @@
 	"organizeImports": {
 		"enabled": false
 	},
+	"files": {
+		"ignore": ["node_modules/**/*", ".netlify/**/*", "dist/**/*"]
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
