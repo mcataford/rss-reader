@@ -21,7 +21,7 @@ export default function NavigationBar() {
 		<>
 			<AppBar position="fixed">
 				<Toolbar>
-					<Typography variant="h6" style={title}>
+					<Typography variant="h6" style={title} aria-label="current location">
 						{routePrettyNames[location]}
 					</Typography>
 					<Button
