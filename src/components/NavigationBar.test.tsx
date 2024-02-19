@@ -1,28 +1,13 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { screen, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { NavigationProvider } from "@/hooks/useNavigation";
+import { renderComponent as renderComponentInner } from "@/testHelpers/renderUtils";
 import * as NavigationHook from "@/hooks/useNavigation";
 
 import NavigationBar from "./NavigationBar";
 
-function Wrappers({ children }) {
-	return (
-		<NavigationProvider>
-			<QueryClientProvider client={new QueryClient()}>
-				{children}
-			</QueryClientProvider>
-		</NavigationProvider>
-	);
-}
-
 function renderComponent() {
-	return {
-		...render(<NavigationBar />, { wrapper: Wrappers }),
-		user: userEvent.setup(),
-	};
+	return renderComponentInner(NavigationBar);
 }
 
 describe("NavigationBar", () => {
