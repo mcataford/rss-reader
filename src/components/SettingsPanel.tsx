@@ -10,7 +10,7 @@ import { useState } from "react";
 
 import { css } from "@emotion/react";
 
-import useSettings from "./hooks/useSettings";
+import useSettings from "@/hooks/useSettings";
 
 const urlCard = {
 	margin: "5px",

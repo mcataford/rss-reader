@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-import useNavigation, { routes } from "./hooks/useNavigation";
+import useNavigation, { routes } from "@/hooks/useNavigation";
 
 const title = {
 	flexGrow: 1,

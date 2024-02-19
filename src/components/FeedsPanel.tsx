@@ -2,9 +2,9 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 
-import useRSSFeeds from "./hooks/useRSSFeeds";
-import useSettings from "./hooks/useSettings";
-import sortFeedItemsByDate from "./utils";
+import useRSSFeeds from "@/hooks/useRSSFeeds";
+import useSettings from "@/hooks/useSettings";
+import sortFeedItemsByDate from "@/utils";
 
 interface CardProps {
 	title: string;
