@@ -24,6 +24,14 @@ two](https://github.com/mcataford/rss-reader/discussions/10) if you do. :tada:
 Once set up, `yarn start` will run the application locally (including a local instance of the Netlify function that
 handles CORS proxying).
 
+### Testing
+
+Frontend component tests are written using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+
+Rendering components should be done via the `testHelpers/renderUtils` exports, which provides a `renderComponent` helper
+that wraps the component in all the contexts provided to the application. This also sets up
+`@testing-library/user-events`.
+
 ## Contributing
 
 The project welcomes contributions as long as they fit within the general roadmap, which is still TBD. Any contribution

@@ -10,7 +10,7 @@ import { useState } from "react";
 
 import { css } from "@emotion/react";
 
-import useSettings from "./hooks/useSettings";
+import useSettings from "@/hooks/useSettings";
 
 const urlCard = {
 	margin: "5px",
@@ -30,16 +30,25 @@ export default function SettingsPanel() {
 	const settings = getSettings();
 	const [feedUrlsForm, setFeedUrlsForm] = useState(settings.feedUrls);
 
-	const urlCards = feedUrlsForm.map((url) => (
-		<Card key={`url_${url}`} variant="outlined" style={urlCard}>
-			{isValidUrl(url) ? (
-				<CheckCircleOutlineIcon color="primary" />
-			) : (
-				<ErrorOutlineIcon color="error" />
-			)}{" "}
-			{url}
-		</Card>
-	));
+	const urlCards = feedUrlsForm.map((url) => {
+		const isValid = isValidUrl(url);
+
+		return (
+			<Card
+				key={`url_${url}`}
+				variant="outlined"
+				style={urlCard}
+				role="listitem"
+			>
+				{isValid ? (
+					<CheckCircleOutlineIcon color="primary" />
+				) : (
+					<ErrorOutlineIcon color="error" />
+				)}{" "}
+				{url}
+			</Card>
+		);
+	});
 
 	return (
 		<Box display="flex" flexDirection="column">
@@ -55,12 +64,13 @@ export default function SettingsPanel() {
 				value={feedUrlsForm.join("\n")}
 				onChange={(v) => setFeedUrlsForm(v.target.value.split("\n"))}
 			/>
-			<Box display="flex" flexDirection="column">
+			<Box display="flex" flexDirection="column" role="list">
 				{urlCards}
 			</Box>
 			<Button
 				variant="contained"
 				color="primary"
+				aria-label="update feeds"
 				onClick={() => {
 					const validUrls = feedUrlsForm.filter(isValidUrl);
 					setSettings<string[]>("feedUrls", validUrls);
