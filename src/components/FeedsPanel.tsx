@@ -27,8 +27,10 @@ function ItemCard(props: CardProps) {
 		timeZone: "UTC",
 	});
 	return (
-		<Card sx={root}>
-			<a href={url}>{title}</a>
+		<Card sx={root} role="listitem">
+			<a href={url} aria-label="Open item">
+				{title}
+			</a>
 			<span>{`${feedTitle} - ${formattedDate}`}</span>
 		</Card>
 	);
@@ -63,7 +65,7 @@ export default function FeedsPanel() {
 	));
 
 	return (
-		<Box display="flex" flexDirection="column">
+		<Box display="flex" flexDirection="column" role="list">
 			{cardList.length > 0 ? cardList : <NoItemsNotice />}
 		</Box>
 	);
