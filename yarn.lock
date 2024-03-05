@@ -10539,8 +10539,8 @@ __metadata:
   linkType: hard
 
 "netlify-cli@npm:^17.16.2":
-  version: 17.17.2
-  resolution: "netlify-cli@npm:17.17.2"
+  version: 17.18.0
+  resolution: "netlify-cli@npm:17.18.0"
   dependencies:
     "@bugsnag/js": "npm:7.20.2"
     "@fastify/static": "npm:6.10.2"
@@ -10655,7 +10655,7 @@ __metadata:
   bin:
     netlify: bin/run.js
     ntl: bin/run.js
-  checksum: 10/9259475a9a1f8fa6cf753e32375e12b033327ce77f5b7eec6cf2d8ef80cf67d4ecbdd26e7d78c18e49c4fddf9824890e8b5bfdc34971c9c47bd00f19e473ba41
+  checksum: 10/b8fe9033f05146d1a4f7d5d67c5b5f7ff51a24e15ea6362143b7537b0bed1e7d010f0923d4c6e8feff1964eb22827b8321128aa06078ff021242c7da16e33f55
   languageName: node
   linkType: hard
 
