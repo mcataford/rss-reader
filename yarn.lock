@@ -4028,21 +4028,21 @@ __metadata:
   linkType: hard
 
 "@vitejs/plugin-legacy@npm:^5.3.0":
-  version: 5.3.1
-  resolution: "@vitejs/plugin-legacy@npm:5.3.1"
+  version: 5.3.2
+  resolution: "@vitejs/plugin-legacy@npm:5.3.2"
   dependencies:
     "@babel/core": "npm:^7.23.9"
     "@babel/preset-env": "npm:^7.23.9"
     browserslist: "npm:^4.23.0"
+    browserslist-to-esbuild: "npm:^2.1.1"
     core-js: "npm:^3.36.0"
-    esbuild-plugin-browserslist: "npm:^0.11.1"
     magic-string: "npm:^0.30.7"
     regenerator-runtime: "npm:^0.14.1"
     systemjs: "npm:^6.14.3"
   peerDependencies:
     terser: ^5.4.0
     vite: ^5.0.0
-  checksum: 10/6c39972c02617b039ca8af3db8961d07e5602c116974ce0e59765812bcb2bf42153201c11dfe2f68accfc7b1fa73b2c1d46db33e3f105eeed8ed332f2971634b
+  checksum: 10/24b773b7c87d52ffd4d097e9ede909a0cc744b7f9fd183cf45dcc08e438326511629503fc1fd6edabc243e5f7052bd781e7330f091c6436622abe67bfab3456e
   languageName: node
   linkType: hard
 
@@ -5035,6 +5035,19 @@ __metadata:
   dependencies:
     fill-range: "npm:^7.0.1"
   checksum: 10/966b1fb48d193b9d155f810e5efd1790962f2c4e0829f8440b8ad236ba009222c501f70185ef732fef17a4c490bb33a03b90dab0631feafbdf447da91e8165b1
+  languageName: node
+  linkType: hard
+
+"browserslist-to-esbuild@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "browserslist-to-esbuild@npm:2.1.1"
+  dependencies:
+    meow: "npm:^13.0.0"
+  peerDependencies:
+    browserslist: "*"
+  bin:
+    browserslist-to-esbuild: cli/index.js
+  checksum: 10/5e91b23ba5ac47412b7456bbb74ee11b35d1083163e9e8e001e48f3a975c65758a4559ab532812d8518877a1d8f68c5b649b88a08722b9543b38e633e6943f7d
   languageName: node
   linkType: hard
 
@@ -6792,19 +6805,6 @@ __metadata:
   version: 6.1.1
   resolution: "es6-promisify@npm:6.1.1"
   checksum: 10/e57dfa8b6533387e6cae115bdc1591e4e6e7648443741360c4f4f8f1d2c17d1f0fb293ccd3f86193f016c236ed15f336e075784eab7ec9a67af0aed2b949dd7c
-  languageName: node
-  linkType: hard
-
-"esbuild-plugin-browserslist@npm:^0.11.1":
-  version: 0.11.1
-  resolution: "esbuild-plugin-browserslist@npm:0.11.1"
-  dependencies:
-    debug: "npm:^4.3.4"
-    zod: "npm:^3.21.4"
-  peerDependencies:
-    browserslist: ^4.21.8
-    esbuild: ~0.20.0
-  checksum: 10/00862b0bf848c82559be4722a0a37f789b95438271a8047b21ed6590439003ce731e1f0fbc0828b7beae8c21147514c98ad0690470022b1a8477f9f2536cabb2
   languageName: node
   linkType: hard
 
@@ -10104,6 +10104,13 @@ __metadata:
   version: 6.0.0
   resolution: "memoize-one@npm:6.0.0"
   checksum: 10/28feaf7e9a870efef1187df110b876ce42deaf86c955f4111d72d23b96e44eed573469316e6ad0d2cc7fa3b1526978215617b126158015f957242c7493babca9
+  languageName: node
+  linkType: hard
+
+"meow@npm:^13.0.0":
+  version: 13.2.0
+  resolution: "meow@npm:13.2.0"
+  checksum: 10/4eff5bc921fed0b8a471ad79069d741a0210036d717547d0c7f36fdaf84ef7a3036225f38b6a53830d84dc9cbf8b944b097fde62381b8b5b215119e735ce1063
   languageName: node
   linkType: hard
 
@@ -15042,7 +15049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.22.4, zod@npm:^3.21.4":
+"zod@npm:3.22.4":
   version: 3.22.4
   resolution: "zod@npm:3.22.4"
   checksum: 10/73622ca36a916f785cf528fe612a884b3e0f183dbe6b33365a7d0fc92abdbedf7804c5e2bd8df0a278e1472106d46674281397a3dd800fa9031dc3429758c6ac
