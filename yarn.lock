@@ -2625,10 +2625,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/blobs@npm:7.0.0":
-  version: 7.0.0
-  resolution: "@netlify/blobs@npm:7.0.0"
-  checksum: 10/a16eb9205b7eab0884bd4bdbcd662f8ef5f21ceda508bf4098de5be23d940ade0886ce93f7a19dc0dd29777e8c83b44c8e2c3b94750cb893054702a9672aae2d
+"@netlify/blobs@npm:7.0.1":
+  version: 7.0.1
+  resolution: "@netlify/blobs@npm:7.0.1"
+  checksum: 10/ec6789a574a519c9ff12f2d43566970a7a95adc4066ade6a3c2574d90ea58ec260a42a21f27d330bd552beb1335e253f85c1f1ebd37ceea6cfe3d6236267a834
   languageName: node
   linkType: hard
 
@@ -10868,12 +10868,12 @@ __metadata:
   linkType: hard
 
 "netlify-cli@npm:^17.16.2":
-  version: 17.19.0
-  resolution: "netlify-cli@npm:17.19.0"
+  version: 17.19.1
+  resolution: "netlify-cli@npm:17.19.1"
   dependencies:
     "@bugsnag/js": "npm:7.20.2"
     "@fastify/static": "npm:6.10.2"
-    "@netlify/blobs": "npm:7.0.0"
+    "@netlify/blobs": "npm:7.0.1"
     "@netlify/build": "npm:29.36.1"
     "@netlify/build-info": "npm:7.13.0"
     "@netlify/config": "npm:20.12.1"
@@ -10984,7 +10984,7 @@ __metadata:
   bin:
     netlify: bin/run.js
     ntl: bin/run.js
-  checksum: 10/c85f8593617cc4886a445f4bf00ba7cd25e9c97fff4a44ac4817b83f8208b4b0ecc4fd2e44cbcbc10529f007ddf18ce5a52918ac97af16e85ac876d7740b178d
+  checksum: 10/cc0f5eeedd379c8765a2d6f3a3b187a575ab6596b222f825e2451c87a034ee683628e171f5be719f8971fd74bf2cbe35aad36bd82171700058780c465cb21000
   languageName: node
   linkType: hard
 
