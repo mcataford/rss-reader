@@ -2,7 +2,6 @@ on:
   push:
     branches:
       main
-  pull_request:
 
 env:
   NODE_VERSION: 20
@@ -93,6 +92,30 @@ jobs:
         with:
           name: build-artifacts
           path: dist
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    name: Deploy frontend
+    needs: build-app
+    steps:
+      - uses: actions/checkout@v4
+      - name: Yarn cache
+        uses: actions/cache@v4
+        id: yarn-cache-restore
+        with:
+          path: |
+            .yarn
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
+      - run: corepack enable
+      - name: Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy --project-name=rss-reader ./dist
   deploy-functions:
     runs-on: ubuntu-latest
     name: Deploy functions
