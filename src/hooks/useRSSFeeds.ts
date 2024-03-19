@@ -29,7 +29,9 @@ async function fetchFeed(
 	url: string,
 	persistedData: Feed | null,
 ): Promise<Feed> {
-	const response = await fetch(`/.netlify/functions/rss-proxy?url=${url}`);
+	const response = await fetch(
+		`https://rss-reader-api.karnov.club/?url=${url}`,
+	);
 
 	const responseData = await response.text();
 
