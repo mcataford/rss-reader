@@ -93,6 +93,26 @@ jobs:
         with:
           name: build-artifacts
           path: dist
+  deploy-functions:
+    runs-on: ubuntu-latest
+    name: Deploy functions
+    needs: build-app
+    steps:
+      - uses: actions/checkout@v4
+      - name: Yarn cache
+        uses: actions/cache@v4
+        id: yarn-cache-restore
+        with:
+          path: |
+            .yarn
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ env.NODE_VERSION }}
+      - run: |
+          . script/bootstrap.sh
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --name=rss-reader-proxy --minify ./functions/rss-proxy/rss-proxy-cloudflare.mts 
   preview:
     runs-on: ubuntu-latest
     name: Deploy preview
