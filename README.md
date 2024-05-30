@@ -1,5 +1,9 @@
 # Yet Another RSS Reader (YARR) :pirate_flag:
 
+> # ✈️ Moved away!
+>
+> This project has moved away from Github and is now hosted [elsewhere](https://forge.karnov.club/marc/rss-reader).
+
 ## Overview
 
 In a never-ending DIY quest, I've put together this RSS feed reader to keep up with the news. The main requirement
